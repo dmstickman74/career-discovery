@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet"/>
+<meta name="googlebot" content="noindex, nofollow"/>
+<meta name="bingbot" content="noindex, nofollow"/>
+<title>ASLA Career Discovery — Interactive Learning Hub</title>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+<style>
+/* ─── Base reset ─────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-sans);
+  background:var(--warm-cream);
+  color:var(--charcoal);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+button{cursor:pointer;font-family:inherit;}
+a{color:var(--asla-teal);text-decoration:none;}
+a:hover{color:var(--asla-teal-light);}
+
+/* ─── Kid-friendly accent palette (derived from ASLA tokens) */
+:root{
+  --kid-sky:    #5B9BD5;
+  --kid-coral:  #E8836B;
+  --kid-yellow: #F4D03F;
+  --kid-purple: #9B72CF;
+  --kid-orange: #E8A838;
+  --kid-pink:   #E88BBF;
+  --nature-green:#4CAF50;
+}
+
+/* ─── Utility ────────────────────────────────────────────── */
+.container{max-width:var(--content-max);margin:0 auto;padding:0 var(--content-gutter);}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+.flex-center{display:flex;align-items:center;justify-content:center;}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-lg);}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-lg);}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-lg);}
+@media(max-width:900px){.grid-3,.grid-4{grid-template-columns:repeat(2,1fr);}.grid-2{grid-template-columns:1fr;}}
+@media(max-width:600px){.grid-3,.grid-4,.grid-2{grid-template-columns:1fr;}}
+
+/* ─── Section spacing ────────────────────────────────────── */
+section{padding:var(--space-4xl) 0;}
+section:nth-child(even){background:var(--white);}
+.section-eyebrow{
+  font-family:var(--font-condensed);
+  font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.14em;
+  color:var(--asla-green);margin-bottom:var(--space-sm);
+}
+.section-title{
+  font-family:var(--font-heading);
+  font-size:clamp(28px,3.2vw,40px);
+  font-weight:400;line-height:1.2;
+  color:var(--asla-teal);margin-bottom:var(--space-md);
+}
+.section-subtitle{
+  font-size:18px;color:var(--dark-gray);
+  max-width:700px;margin-bottom:var(--space-2xl);
+}
+
+/* ─── Header ─────────────────────────────────────────────── */
+.site-header{
+  background:var(--asla-teal);color:var(--white);
+  padding:var(--space-md) 0;position:sticky;top:0;z-index:1000;
+  box-shadow:0 2px 12px rgba(0,0,0,.15);
+}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-sm);}
+.site-header .logo{display:flex;align-items:center;gap:var(--space-sm);font-size:20px;font-weight:700;color:var(--white);text-decoration:none;}
+.site-header .logo svg{width:32px;height:32px;}
+.site-header nav{display:flex;gap:var(--space-lg);flex-wrap:wrap;}
+.site-header nav a{color:var(--white);font-size:14px;font-weight:500;text-decoration:none;opacity:.85;transition:opacity var(--dur-fast) var(--ease-out);}
+.site-header nav a:hover{opacity:1;color:var(--asla-green-light);}
+.age-toggle{display:flex;gap:var(--space-xs);background:rgba(255,255,255,.12);border-radius:var(--radius-pill);padding:3px;}
+.age-toggle button{
+  border:none;background:transparent;color:var(--white);font-size:12px;font-weight:600;
+  padding:6px 14px;border-radius:var(--radius-pill);transition:all var(--dur-fast) var(--ease-out);
+  font-family:var(--font-condensed);letter-spacing:.06em;text-transform:uppercase;
+}
+.age-toggle button.active{background:var(--asla-green);color:var(--asla-teal);}
+.age-toggle button:hover:not(.active){background:rgba(255,255,255,.15);}
+
+/* ─── Hero ───────────────────────────────────────────────── */
+.hero{
+  background:linear-gradient(135deg,var(--asla-teal) 0%,#0D4D5C 40%,#1A6B5A 100%);
+  color:var(--white);padding:var(--space-4xl) 0 var(--space-3xl);
+  position:relative;overflow:hidden;text-align:center;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Ccircle cx='100' cy='80' r='60' fill='%2381BC00' opacity='.08'/%3E%3Ccircle cx='700' cy='120' r='90' fill='%235B9BD5' opacity='.06'/%3E%3Ccircle cx='400' cy='500' r='120' fill='%2381BC00' opacity='.05'/%3E%3Cellipse cx='200' cy='400' rx='80' ry='50' fill='%23F4D03F' opacity='.04'/%3E%3Ccircle cx='650' cy='450' r='70' fill='%23E8836B' opacity='.05'/%3E%3C/svg%3E") center/cover;
+  pointer-events:none;
+}
+.hero h1{
+  font-size:clamp(36px,5vw,64px);font-weight:300;
+  line-height:1.1;margin-bottom:var(--space-lg);position:relative;
+}
+.hero h1 strong{font-weight:700;color:var(--asla-green-light);}
+.hero-sub{font-size:clamp(16px,2vw,22px);opacity:.9;max-width:700px;margin:0 auto var(--space-xl);position:relative;}
+.hero-cta-row{display:flex;gap:var(--space-md);justify-content:center;flex-wrap:wrap;position:relative;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;border-radius:var(--radius-pill);
+  font-size:16px;font-weight:600;border:2px solid transparent;
+  transition:all var(--dur-normal) var(--ease-out);
+  text-decoration:none;
+}
+.btn-primary{background:var(--asla-green);color:var(--asla-teal);border-color:var(--asla-green);}
+.btn-primary:hover{background:var(--asla-green-light);transform:translateY(-2px);box-shadow:0 6px 20px rgba(129,188,0,.3);}
+.btn-outline{background:transparent;color:var(--white);border-color:rgba(255,255,255,.4);}
+.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,.1);transform:translateY(-2px);}
+.btn-sm{padding:10px 20px;font-size:14px;}
+.btn-teal{background:var(--asla-teal);color:var(--white);border-color:var(--asla-teal);}
+.btn-teal:hover{background:var(--asla-teal-light);transform:translateY(-2px);}
+
+/* Floating nature icons in hero */
+.hero-float{position:absolute;animation:floatUp 8s ease-in-out infinite;opacity:.15;pointer-events:none;}
+@keyframes floatUp{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-20px) rotate(5deg);}}
+
+/* ─── Age tabs content ───────────────────────────────────── */
+.age-content{display:none;}
+.age-content.active{display:block;}
+
+/* ─── Activity cards ─────────────────────────────────────── */
+.activity-card{
+  background:var(--white);border-radius:var(--radius-lg);
+  overflow:hidden;transition:all var(--dur-normal) var(--ease-out);
+  box-shadow:var(--shadow-subtle);border:1px solid var(--border-gray);
+}
+.activity-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px);}
+.activity-card .card-visual{
+  height:200px;display:flex;align-items:center;justify-content:center;
+  font-size:64px;position:relative;overflow:hidden;
+}
+.activity-card .card-body{padding:var(--space-lg);}
+.activity-card .card-badge{
+  display:inline-block;font-family:var(--font-condensed);
+  font-size:11px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;padding:4px 12px;border-radius:var(--radius-pill);
+  margin-bottom:var(--space-sm);
+}
+.badge-game{background:#E8F5E9;color:#2E7D32;}
+.badge-create{background:#E3F2FD;color:#1565C0;}
+.badge-learn{background:#FFF3E0;color:#E65100;}
+.badge-print{background:#F3E5F5;color:#7B1FA2;}
+.badge-video{background:#FCE4EC;color:#C62828;}
+.activity-card h3{font-size:20px;font-weight:700;margin-bottom:var(--space-xs);color:var(--asla-teal);}
+.activity-card p{font-size:14px;color:var(--dark-gray);margin-bottom:var(--space-md);}
+.activity-card .card-ages{font-size:12px;color:var(--placeholder-gray);font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.08em;}
+
+/* ─── Coloring Studio ────────────────────────────────────── */
+.coloring-studio{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-card);}
+.studio-toolbar{
+  display:flex;align-items:center;gap:var(--space-md);padding:var(--space-md) var(--space-lg);
+  background:var(--asla-teal);color:var(--white);flex-wrap:wrap;
+}
+.studio-toolbar label{font-size:13px;font-weight:600;font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.08em;}
+.color-swatches{display:flex;gap:6px;flex-wrap:wrap;}
+.color-swatch{
+  width:32px;height:32px;border-radius:50%;border:3px solid transparent;
+  cursor:pointer;transition:all var(--dur-fast) var(--ease-out);
+}
+.color-swatch:hover,.color-swatch.active{border-color:var(--white);transform:scale(1.15);}
+.brush-sizes{display:flex;gap:6px;align-items:center;}
+.brush-btn{
+  background:rgba(255,255,255,.2);border:2px solid transparent;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:all var(--dur-fast) var(--ease-out);
+}
+.brush-btn:hover,.brush-btn.active{border-color:var(--white);background:rgba(255,255,255,.3);}
+.studio-canvas-wrap{position:relative;background:#fff;display:flex;align-items:center;justify-content:center;min-height:500px;}
+.studio-canvas-wrap canvas{cursor:crosshair;}
+.scene-selector{display:flex;gap:var(--space-sm);padding:var(--space-md) var(--space-lg);background:var(--warm-cream);flex-wrap:wrap;}
+.scene-btn{
+  padding:8px 16px;border-radius:var(--radius-pill);border:2px solid var(--border-gray);
+  background:var(--white);font-size:13px;font-weight:600;color:var(--asla-teal);
+  transition:all var(--dur-fast) var(--ease-out);
+}
+.scene-btn:hover{border-color:var(--asla-teal);}
+.scene-btn.active{background:var(--asla-teal);color:var(--white);border-color:var(--asla-teal);}
+
+/* ─── Park Builder ───────────────────────────────────────── */
+.park-builder{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-card);}
+.park-toolbar{
+  display:flex;align-items:center;gap:var(--space-sm);padding:var(--space-md) var(--space-lg);
+  background:var(--soft-sage);border-bottom:1px solid var(--border-gray);flex-wrap:wrap;
+}
+.park-toolbar .element-btn{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:8px 12px;border-radius:var(--radius-sm);border:2px solid transparent;
+  background:var(--white);cursor:grab;font-size:11px;font-weight:600;
+  color:var(--asla-teal);transition:all var(--dur-fast) var(--ease-out);
+  min-width:70px;
+}
+.park-toolbar .element-btn:hover{border-color:var(--asla-green);transform:translateY(-2px);box-shadow:var(--shadow-subtle);}
+.park-toolbar .element-btn .icon{font-size:28px;line-height:1;}
+.park-canvas-wrap{position:relative;min-height:500px;background:linear-gradient(180deg,#87CEEB 0%,#87CEEB 35%,#7EC850 35%,#5DAA30 100%);overflow:hidden;}
+.park-canvas-wrap canvas{width:100%;height:100%;}
+.park-item{
+  position:absolute;cursor:move;user-select:none;
+  transition:filter var(--dur-fast) var(--ease-out);
+  font-size:40px;line-height:1;
+}
+.park-item:hover{filter:drop-shadow(0 4px 8px rgba(0,0,0,.2));}
+.park-item.selected{outline:3px dashed var(--asla-green);outline-offset:4px;}
+.park-controls{display:flex;gap:var(--space-md);padding:var(--space-md) var(--space-lg);background:var(--warm-cream);flex-wrap:wrap;align-items:center;}
+
+/* ─── Memory Game ────────────────────────────────────────── */
+.memory-board{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-md);
+  max-width:600px;margin:0 auto;
+}
+.memory-card{
+  aspect-ratio:1;background:var(--asla-teal);border-radius:var(--radius-md);
+  display:flex;align-items:center;justify-content:center;
+  font-size:40px;cursor:pointer;transition:all var(--dur-normal) var(--ease-out);
+  position:relative;transform-style:preserve-3d;
+  box-shadow:var(--shadow-subtle);
+}
+.memory-card:hover:not(.flipped):not(.matched){transform:scale(1.05);box-shadow:var(--shadow-hover);}
+.memory-card .card-front,.memory-card .card-back{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  backface-visibility:hidden;border-radius:var(--radius-md);
+}
+.memory-card .card-front{background:var(--asla-teal);color:var(--white);}
+.memory-card .card-front i{width:32px;height:32px;}
+.memory-card .card-back{background:var(--white);transform:rotateY(180deg);border:2px solid var(--soft-sage);}
+.memory-card.flipped{transform:rotateY(180deg);}
+.memory-card.matched{transform:rotateY(180deg);opacity:.7;pointer-events:none;}
+.memory-card.matched .card-back{background:var(--soft-sage);border-color:var(--asla-green);}
+.game-stats{display:flex;gap:var(--space-xl);justify-content:center;margin-bottom:var(--space-xl);flex-wrap:wrap;}
+.game-stat{text-align:center;}
+.game-stat .num{font-size:36px;font-weight:700;color:var(--asla-teal);}
+.game-stat .label{font-size:12px;color:var(--dark-gray);font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.1em;}
+
+/* ─── Quiz ───────────────────────────────────────────────── */
+.quiz-wrap{max-width:700px;margin:0 auto;}
+.quiz-progress{
+  height:8px;background:var(--soft-sage);border-radius:4px;margin-bottom:var(--space-xl);overflow:hidden;
+}
+.quiz-progress-bar{height:100%;background:var(--asla-green);border-radius:4px;transition:width var(--dur-slow) var(--ease-out);}
+.quiz-question{font-size:24px;font-weight:500;color:var(--asla-teal);margin-bottom:var(--space-xl);line-height:1.3;}
+.quiz-options{display:flex;flex-direction:column;gap:var(--space-md);}
+.quiz-option{
+  padding:var(--space-lg);border:2px solid var(--border-gray);border-radius:var(--radius-md);
+  background:var(--white);font-size:16px;text-align:left;
+  transition:all var(--dur-fast) var(--ease-out);display:flex;align-items:center;gap:var(--space-md);
+}
+.quiz-option:hover{border-color:var(--asla-teal);background:rgba(0,58,73,.03);}
+.quiz-option.correct{border-color:var(--nature-green);background:#E8F5E9;}
+.quiz-option.wrong{border-color:var(--alert-red);background:#FFEBEE;}
+.quiz-option .opt-letter{
+  width:36px;height:36px;border-radius:50%;background:var(--soft-sage);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:var(--asla-teal);flex-shrink:0;
+}
+.quiz-result{text-align:center;padding:var(--space-2xl);}
+.quiz-result .score{font-size:64px;font-weight:700;color:var(--asla-green);}
+.quiz-result .message{font-size:22px;color:var(--asla-teal);margin:var(--space-md) 0;}
+
+/* ─── Video library ──────────────────────────────────────── */
+.video-card{
+  background:var(--white);border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow-subtle);border:1px solid var(--border-gray);
+  transition:all var(--dur-normal) var(--ease-out);
+}
+.video-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-3px);}
+.video-thumb{
+  height:180px;display:flex;align-items:center;justify-content:center;
+  position:relative;cursor:pointer;
+}
+.video-thumb .play-icon{
+  width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.9);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(0,0,0,.2);transition:all var(--dur-fast) var(--ease-out);
+}
+.video-thumb:hover .play-icon{transform:scale(1.1);background:var(--white);}
+.video-card .card-body{padding:var(--space-lg);}
+.video-card h3{font-size:16px;font-weight:700;color:var(--asla-teal);margin-bottom:var(--space-xs);}
+.video-card p{font-size:13px;color:var(--dark-gray);}
+
+/* ─── Educator portal ────────────────────────────────────── */
+.edu-card{
+  background:var(--white);border-radius:var(--radius-lg);padding:var(--space-xl);
+  box-shadow:var(--shadow-subtle);border:1px solid var(--border-gray);
+  transition:all var(--dur-normal) var(--ease-out);
+  display:flex;flex-direction:column;gap:var(--space-md);
+}
+.edu-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-3px);}
+.edu-card .edu-icon{
+  width:56px;height:56px;border-radius:var(--radius-md);
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;
+}
+.edu-card h3{font-size:18px;font-weight:700;color:var(--asla-teal);}
+.edu-card p{font-size:14px;color:var(--dark-gray);flex:1;}
+.edu-card .edu-meta{font-size:12px;color:var(--placeholder-gray);font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.08em;}
+
+/* ─── Printables ─────────────────────────────────────────── */
+.printable-card{
+  background:var(--white);border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow-subtle);border:1px solid var(--border-gray);
+  text-align:center;transition:all var(--dur-normal) var(--ease-out);
+}
+.printable-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-3px);}
+.printable-preview{
+  height:220px;display:flex;align-items:center;justify-content:center;
+  font-size:80px;position:relative;
+}
+.printable-card .card-body{padding:var(--space-lg);}
+.printable-card h3{font-size:16px;font-weight:700;color:var(--asla-teal);margin-bottom:var(--space-xs);}
+.printable-card p{font-size:13px;color:var(--dark-gray);margin-bottom:var(--space-md);}
+
+/* ─── Partners ───────────────────────────────────────────── */
+.partner-strip{display:flex;gap:var(--space-xl);justify-content:center;flex-wrap:wrap;align-items:center;padding:var(--space-lg) 0;}
+.partner-logo{
+  padding:var(--space-md) var(--space-xl);background:var(--white);
+  border-radius:var(--radius-md);border:1px solid var(--border-gray);
+  font-size:14px;font-weight:600;color:var(--dark-gray);
+  transition:all var(--dur-fast) var(--ease-out);
+}
+.partner-logo:hover{box-shadow:var(--shadow-subtle);border-color:var(--asla-green);}
+
+/* ─── Stats band ─────────────────────────────────────────── */
+.stats-band{background:var(--asla-teal);color:var(--white);padding:var(--space-2xl) 0;}
+.stats-band .container{display:flex;justify-content:space-around;flex-wrap:wrap;gap:var(--space-xl);}
+.stat-item{text-align:center;}
+.stat-item .stat-num{font-size:clamp(32px,4vw,48px);font-weight:700;color:var(--asla-green-light);display:block;}
+.stat-item .stat-label{font-size:14px;opacity:.8;font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.08em;}
+
+/* ─── Footer ─────────────────────────────────────────────── */
+.site-footer{background:var(--asla-teal);color:var(--white);padding:var(--space-3xl) 0 var(--space-xl);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:var(--space-2xl);margin-bottom:var(--space-2xl);}
+@media(max-width:800px){.footer-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.footer-grid{grid-template-columns:1fr;}}
+.footer-col h4{font-size:14px;font-weight:700;margin-bottom:var(--space-md);font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.1em;color:var(--asla-green-light);}
+.footer-col p,.footer-col a{font-size:14px;color:rgba(255,255,255,.75);text-decoration:none;display:block;margin-bottom:var(--space-sm);}
+.footer-col a:hover{color:var(--white);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:var(--space-lg);display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--space-md);font-size:13px;opacity:.6;}
+
+/* ─── Animations ─────────────────────────────────────────── */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.fade-in{animation:fadeInUp .6s var(--ease-out) both;}
+.delay-1{animation-delay:.1s;}
+.delay-2{animation-delay:.2s;}
+.delay-3{animation-delay:.3s;}
+.delay-4{animation-delay:.4s;}
+
+/* ─── Modal ──────────────────────────────────────────────── */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;
+  display:none;align-items:center;justify-content:center;padding:var(--space-lg);
+}
+.modal-overlay.open{display:flex;}
+.modal{
+  background:var(--white);border-radius:var(--radius-lg);max-width:900px;width:100%;
+  max-height:90vh;overflow-y:auto;position:relative;
+}
+.modal-close{
+  position:absolute;top:var(--space-md);right:var(--space-md);
+  width:36px;height:36px;border-radius:50%;border:none;
+  background:var(--warm-cream);display:flex;align-items:center;justify-content:center;
+  font-size:18px;z-index:1;
+}
+.modal-close:hover{background:var(--soft-sage);}
+.modal-body{padding:var(--space-2xl);}
+
+/* ─── Tab system ─────────────────────────────────────────── */
+.tab-bar{display:flex;gap:var(--space-xs);border-bottom:2px solid var(--border-gray);margin-bottom:var(--space-xl);}
+.tab-btn{
+  padding:var(--space-md) var(--space-lg);border:none;background:transparent;
+  font-size:14px;font-weight:600;color:var(--dark-gray);border-bottom:3px solid transparent;
+  margin-bottom:-2px;transition:all var(--dur-fast) var(--ease-out);
+}
+.tab-btn:hover{color:var(--asla-teal);}
+.tab-btn.active{color:var(--asla-teal);border-bottom-color:var(--asla-green);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* ─── Notification toast ─────────────────────────────────── */
+.toast{
+  position:fixed;bottom:var(--space-xl);right:var(--space-xl);
+  background:var(--asla-teal);color:var(--white);padding:var(--space-md) var(--space-xl);
+  border-radius:var(--radius-md);box-shadow:var(--shadow-hover);
+  font-size:14px;font-weight:500;z-index:3000;
+  transform:translateY(100px);opacity:0;transition:all var(--dur-slow) var(--ease-out);
+}
+.toast.show{transform:translateY(0);opacity:1;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HEADER
+     ═══════════════════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="container">
+    <a href="#" class="logo">
+      <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#81BC00"/><text x="4" y="22" font-size="14" font-weight="bold" fill="#003A49" font-family="sans-serif">LA</text></svg>
+      ASLA Discovery Hub
+    </a>
+    <div class="age-toggle" id="ageToggle">
+      <button class="active" data-age="all">All Ages</button>
+      <button data-age="k2">K-2</button>
+      <button data-age="35">3-5</button>
+      <button data-age="68">6-8</button>
+      <button data-age="912">9-12</button>
+      <button data-age="edu">Educators</button>
+    </div>
+    <nav>
+      <a href="#explore">Explore</a>
+      <a href="#create">Create</a>
+      <a href="#play">Play</a>
+      <a href="#learn">Learn</a>
+      <a href="#educators">Educators</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════════════════ -->
+<section class="hero" id="top">
+  <div class="hero-float" style="top:10%;left:8%;font-size:60px;">&#127795;</div>
+  <div class="hero-float" style="top:25%;right:12%;font-size:48px;animation-delay:2s;">&#127807;</div>
+  <div class="hero-float" style="bottom:20%;left:15%;font-size:52px;animation-delay:4s;">&#127803;</div>
+  <div class="hero-float" style="bottom:15%;right:8%;font-size:44px;animation-delay:1s;">&#129704;</div>
+  <div class="container">
+    <p class="section-eyebrow" style="color:var(--asla-green-light);">ASLA Career Discovery</p>
+    <h1 class="fade-in">Discover the World of<br/><strong>Landscape Architecture</strong></h1>
+    <p class="hero-sub fade-in delay-1">Color, build, play, and learn — explore how landscape architects design amazing parks, playgrounds, green roofs, and entire communities. Your adventure starts here.</p>
+    <div class="hero-cta-row fade-in delay-2">
+      <a href="#create" class="btn btn-primary">Start Creating</a>
+      <a href="#play" class="btn btn-outline">Play Games</a>
+      <a href="#educators" class="btn btn-outline">I'm an Educator</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     STATS BAND
+     ═══════════════════════════════════════════════════════════ -->
+<div class="stats-band">
+  <div class="container">
+    <div class="stat-item"><span class="stat-num">127</span><span class="stat-label">Years of ASLA</span></div>
+    <div class="stat-item"><span class="stat-num">16,000+</span><span class="stat-label">Landscape Architects</span></div>
+    <div class="stat-item"><span class="stat-num">78</span><span class="stat-label">Accredited Programs</span></div>
+    <div class="stat-item"><span class="stat-num">50,000+</span><span class="stat-label">Future City Participants</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     EXPLORE — Activity Cards Grid
+     ═══════════════════════════════════════════════════════════ -->
+<section id="explore">
+  <div class="container">
+    <p class="section-eyebrow">Explore</p>
+    <h2 class="section-title">Choose Your Adventure</h2>
+    <p class="section-subtitle">Jump into activities designed just for you — from coloring your dream park to building one from scratch.</p>
+    <div class="grid-4" id="activityGrid">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CREATE — Coloring Studio
+     ═══════════════════════════════════════════════════════════ -->
+<section id="create">
+  <div class="container">
+    <p class="section-eyebrow">Create</p>
+    <h2 class="section-title">Digital Coloring Studio</h2>
+    <p class="section-subtitle">Pick a landscape scene and bring it to life with color. Draw trees, flowers, pathways, and more.</p>
+    <div class="coloring-studio">
+      <div class="scene-selector" id="sceneSelector">
+        <button class="scene-btn active" data-scene="park">Community Park</button>
+        <button class="scene-btn" data-scene="playground">Playground</button>
+        <button class="scene-btn" data-scene="garden">Pollinator Garden</button>
+        <button class="scene-btn" data-scene="greenroof">Green Roof</button>
+        <button class="scene-btn" data-scene="trail">Nature Trail</button>
+      </div>
+      <div class="studio-toolbar" id="studioToolbar">
+        <div>
+          <label>Color</label>
+          <div class="color-swatches" id="colorSwatches"></div>
+        </div>
+        <div>
+          <label>Brush</label>
+          <div class="brush-sizes" id="brushSizes"></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-left:auto;">
+          <button class="btn btn-sm btn-outline" onclick="clearCanvas()" title="Clear canvas">Clear</button>
+          <button class="btn btn-sm btn-outline" onclick="undoCanvas()" title="Undo last stroke">Undo</button>
+          <button class="btn btn-sm btn-primary" onclick="saveColoring()" title="Save as image">Save Image</button>
+        </div>
+      </div>
+      <div class="studio-canvas-wrap">
+        <canvas id="coloringCanvas" width="900" height="500"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CREATE — Virtual Park Builder
+     ═══════════════════════════════════════════════════════════ -->
+<section id="build">
+  <div class="container">
+    <p class="section-eyebrow">Build</p>
+    <h2 class="section-title">Virtual Park Builder</h2>
+    <p class="section-subtitle">Design your own park. Drag elements onto the landscape, arrange them, and create a space where everyone belongs.</p>
+    <div class="park-builder">
+      <div class="park-toolbar" id="parkToolbar">
+        <!-- Filled by JS -->
+      </div>
+      <div class="park-canvas-wrap" id="parkCanvas" style="height:500px;position:relative;">
+        <!-- Park items get added here -->
+        <div style="position:absolute;bottom:10px;right:10px;background:rgba(255,255,255,.85);padding:8px 14px;border-radius:var(--radius-sm);font-size:12px;color:var(--dark-gray);">
+          Click elements above, then click on the landscape to place them
+        </div>
+      </div>
+      <div class="park-controls">
+        <button class="btn btn-sm btn-teal" onclick="clearPark()">Start Over</button>
+        <button class="btn btn-sm btn-primary" onclick="savePark()">Save My Park</button>
+        <span style="font-size:13px;color:var(--dark-gray);margin-left:auto;" id="parkItemCount">0 elements placed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PLAY — Memory Game
+     ═══════════════════════════════════════════════════════════ -->
+<section id="play">
+  <div class="container">
+    <p class="section-eyebrow">Play</p>
+    <h2 class="section-title">Landscape Architecture Memory Match</h2>
+    <p class="section-subtitle" style="text-align:center;margin:0 auto var(--space-xl);">Match pairs of landscape elements. How fast can you find them all?</p>
+    <div class="game-stats">
+      <div class="game-stat"><div class="num" id="matchCount">0</div><div class="label">Matches</div></div>
+      <div class="game-stat"><div class="num" id="moveCount">0</div><div class="label">Moves</div></div>
+      <div class="game-stat"><div class="num" id="timerDisplay">0:00</div><div class="label">Time</div></div>
+    </div>
+    <div class="memory-board" id="memoryBoard">
+      <!-- Filled by JS -->
+    </div>
+    <div style="text-align:center;margin-top:var(--space-xl);">
+      <button class="btn btn-teal" onclick="initMemoryGame()">New Game</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PLAY — Career Quiz
+     ═══════════════════════════════════════════════════════════ -->
+<section id="quiz">
+  <div class="container">
+    <p class="section-eyebrow">Discover</p>
+    <h2 class="section-title" style="text-align:center;">What Kind of Landscape Architect Are You?</h2>
+    <p class="section-subtitle" style="text-align:center;margin:0 auto var(--space-xl);">Answer these questions to find out which specialty matches your interests.</p>
+    <div class="quiz-wrap" id="quizWrap">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     LEARN — Video Library
+     ═══════════════════════════════════════════════════════════ -->
+<section id="learn">
+  <div class="container">
+    <p class="section-eyebrow">Watch and Learn</p>
+    <h2 class="section-title">Multimedia Library</h2>
+    <p class="section-subtitle">Videos, sketch sessions, and stories from real landscape architects — curated from ASLA's DREAM BIG with Design conferences.</p>
+    <div class="grid-3" id="videoGrid">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PRINTABLES
+     ═══════════════════════════════════════════════════════════ -->
+<section id="printables">
+  <div class="container">
+    <p class="section-eyebrow">Print and Color</p>
+    <h2 class="section-title">Printable Coloring Pages and Activity Books</h2>
+    <p class="section-subtitle">Download, print, and color these landscape architecture scenes at home or in the classroom.</p>
+    <div class="grid-4" id="printablesGrid">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     EDUCATORS PORTAL
+     ═══════════════════════════════════════════════════════════ -->
+<section id="educators" style="background:var(--soft-sage);">
+  <div class="container">
+    <p class="section-eyebrow">For Educators</p>
+    <h2 class="section-title">Classroom Resources and Curriculum</h2>
+    <p class="section-subtitle">Standards-aligned activities, lesson plans, and professional development opportunities to bring landscape architecture into your classroom.</p>
+
+    <div class="tab-bar" id="eduTabBar">
+      <button class="tab-btn active" data-tab="curriculum">Curriculum</button>
+      <button class="tab-btn" data-tab="activities">Activities</button>
+      <button class="tab-btn" data-tab="pd">Professional Development</button>
+      <button class="tab-btn" data-tab="partnerships">Partnerships</button>
+    </div>
+
+    <!-- Curriculum Tab -->
+    <div class="tab-panel active" data-tab="curriculum">
+      <div class="grid-3" id="curriculumGrid">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+
+    <!-- Activities Tab -->
+    <div class="tab-panel" data-tab="activities">
+      <div class="grid-3" id="activitiesGrid">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+
+    <!-- PD Tab -->
+    <div class="tab-panel" data-tab="pd">
+      <div class="grid-2" id="pdGrid">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+
+    <!-- Partnerships Tab -->
+    <div class="tab-panel" data-tab="partnerships">
+      <p style="margin-bottom:var(--space-xl);font-size:16px;color:var(--dark-gray);">ASLA partners with leading organizations to bring design education to students across the country.</p>
+      <div class="partner-strip" id="partnerStrip">
+        <!-- Filled by JS -->
+      </div>
+      <div class="grid-3" id="partnerGrid" style="margin-top:var(--space-xl);">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CTA BAND
+     ═══════════════════════════════════════════════════════════ -->
+<section style="background:linear-gradient(135deg,var(--asla-teal) 0%,#1A6B5A 100%);color:var(--white);text-align:center;padding:var(--space-3xl) 0;">
+  <div class="container">
+    <h2 style="font-size:clamp(28px,3vw,40px);font-weight:400;margin-bottom:var(--space-md);color:var(--white);">Join the Movement</h2>
+    <p style="font-size:18px;opacity:.85;max-width:600px;margin:0 auto var(--space-xl);">Whether you're a student, educator, or parent — become part of the community shaping healthier, more resilient places for everyone.</p>
+    <div class="hero-cta-row">
+      <a href="https://www.asla.org/become-a-la/career-discovery/join-our-movement!" class="btn btn-primary" target="_blank" rel="noopener">Join Our Movement</a>
+      <a href="https://www.asla.org/become-a-la/career-discovery" class="btn btn-outline" target="_blank" rel="noopener">Visit ASLA.org</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>ASLA Discovery Hub</h4>
+        <p>The American Society of Landscape Architects has been the national voice of landscape architecture since 1899. This interactive hub brings career discovery resources to life for K-12 students and educators.</p>
+      </div>
+      <div class="footer-col">
+        <h4>For Students</h4>
+        <a href="#create">Coloring Studio</a>
+        <a href="#build">Park Builder</a>
+        <a href="#play">Memory Game</a>
+        <a href="#quiz">Career Quiz</a>
+        <a href="#printables">Printables</a>
+      </div>
+      <div class="footer-col">
+        <h4>For Educators</h4>
+        <a href="#educators">Curriculum</a>
+        <a href="#educators">Activities</a>
+        <a href="#educators">Professional Development</a>
+        <a href="https://www.asla.org/become-a-la/career-discovery" target="_blank" rel="noopener">ASLA Career Discovery</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://www.facebook.com/NationalASLA/" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/nationalasla/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/landscapearchitects" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.pinterest.com/nationalasla/" target="_blank" rel="noopener">Pinterest</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>636 Eye Street, NW, Washington, DC 20001-3736</span>
+      <span>202-898-2444</span>
+      <span>asla.org</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<!-- Video modal -->
+<div class="modal-overlay" id="videoModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeVideoModal()">&times;</button>
+    <div class="modal-body" id="videoModalBody"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+/* ────────────────────────────────────────────────────────────────
+   DATA
+   ──────────────────────────────────────────────────────────── */
+
+const ACTIVITIES = [
+  {title:'Digital Coloring Studio',desc:'Pick a landscape scene and color it digitally — parks, gardens, green roofs, and trails.',badge:'create',icon:'&#127912;',bg:'linear-gradient(135deg,#E3F2FD,#BBDEFB)',ages:'All Ages',link:'#create',ageGroups:['all','k2','35','68','912']},
+  {title:'Virtual Park Builder',desc:'Design your dream park by placing trees, benches, paths, fountains, play areas, and more.',badge:'create',icon:'&#127795;',bg:'linear-gradient(135deg,#E8F5E9,#C8E6C9)',ages:'All Ages',link:'#build',ageGroups:['all','k2','35','68','912']},
+  {title:'Memory Match Game',desc:'Find matching pairs of landscape elements. Train your memory while learning design vocabulary.',badge:'game',icon:'&#129513;',bg:'linear-gradient(135deg,#FFF3E0,#FFE0B2)',ages:'All Ages',link:'#play',ageGroups:['all','k2','35','68','912']},
+  {title:'Career Quiz',desc:'Discover what kind of landscape architect matches your personality and interests.',badge:'learn',icon:'&#128161;',bg:'linear-gradient(135deg,#F3E5F5,#E1BEE7)',ages:'Grades 6-12',link:'#quiz',ageGroups:['all','68','912']},
+  {title:'Printable Coloring Pages',desc:'Download and print beautiful landscape scenes to color by hand at home or in the classroom.',badge:'print',icon:'&#128396;',bg:'linear-gradient(135deg,#FCE4EC,#F8BBD0)',ages:'All Ages',link:'#printables',ageGroups:['all','k2','35','68']},
+  {title:'Disney Paper Parks',desc:'Build your own miniature theme park inspired by Walt Disney Imagineers and landscape architects.',badge:'create',icon:'&#127984;',bg:'linear-gradient(135deg,#E8EAF6,#C5CAE9)',ages:'All Ages',link:'https://www.asla.org/disneypaperparkdreambigwithdesignspecialedition',ageGroups:['all','k2','35','68','912'],external:true},
+  {title:'Activity Sketch Books',desc:'Journey across an imaginary town or the real United States through sketching and design activities.',badge:'create',icon:'&#128221;',bg:'linear-gradient(135deg,#FFF8E1,#FFECB3)',ages:'Ages 9+',link:'https://www.asla.org/become-a-la/career-discovery/activity-sketchbooks',ageGroups:['all','35','68','912'],external:true},
+  {title:'Video Library',desc:'Watch sketch sessions, story time readings, and presentations from real landscape architects.',badge:'video',icon:'&#127909;',bg:'linear-gradient(135deg,#FFEBEE,#FFCDD2)',ages:'All Ages',link:'#learn',ageGroups:['all','k2','35','68','912']},
+  {title:'YOUR LAND Magazine',desc:'Explore real landscape architecture projects through this digital magazine for middle and high schoolers.',badge:'learn',icon:'&#128214;',bg:'linear-gradient(135deg,#E0F7FA,#B2EBF2)',ages:'Grades 6-12',link:'https://www.asla.org/become-a-la/career-discovery/your-land-magazine',ageGroups:['all','68','912'],external:true},
+  {title:'Schoolyards in Bloom',desc:'Discover the world of pollinators through hands-on activities — make crafts, design gardens, and learn about bees and butterflies.',badge:'learn',icon:'&#127804;',bg:'linear-gradient(135deg,#F1F8E9,#DCEDC8)',ages:'Grades K-5',link:'https://www.asla.org/become-a-la/career-discovery/schoolyards-in-bloom',ageGroups:['all','k2','35'],external:true},
+  {title:'STEM Literacy by Design',desc:'Fun reading adventures that connect outdoor learning with science, technology, engineering, and math.',badge:'learn',icon:'&#128218;',bg:'linear-gradient(135deg,#FFF3E0,#FFE0B2)',ages:'Elementary School',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design',ageGroups:['all','k2','35'],external:true},
+  {title:'Your Path to LA',desc:'A comprehensive guide for high schoolers ready to explore landscape architecture as a career.',badge:'learn',icon:'&#128736;',bg:'linear-gradient(135deg,#ECEFF1,#CFD8DC)',ages:'Grades 9-12',link:'https://www.asla.org/become-a-la/your-path',ageGroups:['all','912'],external:true},
+];
+
+const VIDEOS = [
+  {title:"What's The Big Idea?",desc:'Sing along with Billy Jonas and discover the big idea behind landscape architecture.',bg:'linear-gradient(135deg,var(--asla-teal),#1A6B5A)',grade:'All Ages',vimeo:'781179992'},
+  {title:'Sketch It Out',desc:'Watch landscape architects sketch their ideas from concept to paper in real time.',bg:'linear-gradient(135deg,#5B9BD5,#4A86C0)',grade:'ES / MS / HS',vimeo:null},
+  {title:'Designing Your Perfect Park',desc:'Learn the design process behind creating a park that serves the whole community.',bg:'linear-gradient(135deg,#81BC00,#6B9E00)',grade:'MS / HS',vimeo:null},
+  {title:'Theme Park Design',desc:'Go behind the scenes to see how landscape architects shape theme park experiences.',bg:'linear-gradient(135deg,#9B72CF,#7E57C2)',grade:'MS / HS',vimeo:null},
+  {title:'Storytime: STEM Literacy',desc:'Story time readings that connect nature, design, and STEM learning — available in ASL, Mandarin, and Spanish.',bg:'linear-gradient(135deg,#E8836B,#D96A53)',grade:'Elementary',vimeo:null},
+  {title:'Drone Zone',desc:'See landscapes from above — drones reveal the patterns and systems landscape architects design.',bg:'linear-gradient(135deg,#F4D03F,#D4B02F)',grade:'MS / HS',vimeo:null},
+  {title:'Birdland Project — STEM Spotlight',desc:'Richard Jones, ASLA, shows how the Birdland Project at Frances Scott Key Middle School enriches STEM education.',bg:'linear-gradient(135deg,#4CAF50,#388E3C)',grade:'MS / HS',vimeo:'223822212'},
+  {title:'Hollywood Backdrops: Storyboarding',desc:'Discover how landscape design principles shape the outdoor sets and backdrops of film and television.',bg:'linear-gradient(135deg,#E8A838,#D09530)',grade:'MS / HS',vimeo:null},
+  {title:'Behind the Scenes: Dream Big',desc:'A behind-the-scenes look at the making of ASLA\'s Dream Big production.',bg:'linear-gradient(135deg,#003A49,#0D4D5C)',grade:'All Ages',vimeo:'752204548'},
+];
+
+const PRINTABLES = [
+  {title:'Community Park Scene',desc:'A bustling community park with paths, benches, trees, and a pond.',icon:'&#127795;',bg:'linear-gradient(135deg,#E8F5E9,#C8E6C9)'},
+  {title:'Pollinator Garden',desc:'Flowers, bees, butterflies, and native plants in a designed garden.',icon:'&#127804;',bg:'linear-gradient(135deg,#FFF8E1,#FFECB3)'},
+  {title:'Playground Design',desc:'Swings, slides, climbing walls, and creative play structures surrounded by trees.',icon:'&#127904;',bg:'linear-gradient(135deg,#E3F2FD,#BBDEFB)'},
+  {title:'Green Roof',desc:'A rooftop garden with plants, solar panels, seating areas, and city skyline.',icon:'&#127961;',bg:'linear-gradient(135deg,#F1F8E9,#DCEDC8)'},
+  {title:'Nature Trail',desc:'A winding trail through forest with bridges, signs, and wildlife.',icon:'&#128692;',bg:'linear-gradient(135deg,#E0F7FA,#B2EBF2)'},
+  {title:'Cityscape Garden',desc:'Urban planters, street trees, and pocket parks in a downtown setting.',icon:'&#127751;',bg:'linear-gradient(135deg,#ECEFF1,#CFD8DC)'},
+  {title:'Activity Book — Kids',desc:'The full ASLA Activity Book for ages 9-12. Journey across an imaginary town.',icon:'&#128221;',bg:'linear-gradient(135deg,#FFF3E0,#FFE0B2)',link:'https://www.asla.org/become-a-la/career-discovery/activity-sketchbooks'},
+  {title:'Activity Book — Teens',desc:'The ASLA Activity Book for ages 13+. Explore real U.S. landscape architecture projects.',icon:'&#128218;',bg:'linear-gradient(135deg,#F3E5F5,#E1BEE7)',link:'https://www.asla.org/become-a-la/career-discovery/activity-sketchbooks'},
+];
+
+const CURRICULUM = [
+  {title:'Schoolyards in Bloom',desc:'A full K-5 unit on pollinators and landscape architecture. Includes poster, lesson plans, vocabulary, activities, and extension projects for grades 6-8.',icon:'&#127804;',bg:'#E8F5E9',grades:'K-5 (ext. 6-8)',link:'https://www.asla.org/become-a-la/career-discovery/schoolyards-in-bloom'},
+  {title:'STEM Literacy by Design',desc:'Outdoor literacy education integrating science, technology, engineering, and math through reading adventures in the natural environment.',icon:'&#128218;',bg:'#E3F2FD',grades:'Elementary',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Disney Paper Parks Packet',desc:'Complete design-build activity inspired by Walt Disney Imagineers. Two editions available (2021 and 2022) with printable templates.',icon:'&#127984;',bg:'#EDE7F6',grades:'All Ages',link:'https://www.asla.org/disneypaperparkdreambigwithdesignspecialedition'},
+  {title:'Student Climate Primer',desc:'Introduces learners to climate change, biodiversity, and the built environment through real-world ASLA case studies with guided reflection.',icon:'&#127758;',bg:'#E0F7FA',grades:'MS / HS',link:'https://www.asla.org/become-a-la/career-discovery/multimedia-library-for-kids-and-teens/student-primer-climate-biodiversity-action-case-studies'},
+  {title:'Activity Sketch Books',desc:'Two editions — Kids (ages 9-12) journey through an imaginary town; Teens/Adults explore real U.S. projects with problem-solving activities.',icon:'&#128221;',bg:'#FFF8E1',grades:'Ages 9+',link:'https://www.asla.org/become-a-la/career-discovery/activity-sketchbooks'},
+  {title:'YOUR LAND Magazine',desc:'Digital and print magazine featuring real landscape architecture case studies. Sponsored by Landscape Structures for classroom use.',icon:'&#128214;',bg:'#FFF3E0',grades:'Grades 6-12',link:'https://www.asla.org/become-a-la/career-discovery/your-land-magazine'},
+];
+
+const EDU_ACTIVITIES = [
+  {title:'Kahoot Quiz: Landscape Architecture',desc:'A ready-to-use classroom Kahoot quiz on landscape architecture careers and concepts. Great for icebreakers and review.',icon:'&#127922;',bg:'#FFF3E0',grades:'All Ages'},
+  {title:'Pollination HIVE Games',desc:'Two pollination-themed games (Orange and Yellow editions) featuring native plants from Historic Fair Hill in Philadelphia.',icon:'&#127803;',bg:'#E8F5E9',grades:'Grades 1-5'},
+  {title:'Pipe Cleaner Bee Tutorial',desc:'A fun crafting video tutorial — students make bees from pipe cleaners while learning about pollinator habitat design.',icon:'&#128029;',bg:'#FFF8E1',grades:'K-5'},
+  {title:'Design a Parklet Challenge',desc:'Based on ASLA\'s PARK(ing) Day collaboration with Howard University Middle School — students design and build a temporary mini-park.',icon:'&#127795;',bg:'#E3F2FD',grades:'Grades 6-8'},
+  {title:'Minecraft Park Design',desc:'Host a DREAM BIG with Minecraft session — students design landscape architecture projects in the game they love.',icon:'&#127918;',bg:'#F3E5F5',grades:'All Ages'},
+  {title:'Accessible Playground Design',desc:'Based on the NSBE Jr. collaboration — students design an accessible playground considering universal design principles.',icon:'&#9855;',bg:'#E0F2F1',grades:'MS / HS'},
+];
+
+const PD_ITEMS = [
+  {title:'2026 Design Academy for K-12 Educators',desc:'Guided community building and professional inspiration. A multi-day immersive experience for educators exploring landscape architecture as a teaching framework.',link:'https://www.asla.org/design-academy',date:'2026'},
+  {title:'2025 Design Academy: Environmental Humanities',desc:'Teaching Environmental Humanities through Landscape Architecture. Includes site visits to City Center Plaza, Franklin Park, Georgetown Day School, Howard University, MLK Library Green Roof, and Smithsonian Gardens.',link:'https://www.asla.org/become-a-la/career-discovery/design-academy-for-k-12-educators-teaching-environmental-design-through-landscape-architecture',date:'2025'},
+  {title:'DREAM BIG with Design: Teacher\'s Edition',desc:'Professional development workshops curated from ASLA\'s conference series. Earn PD hours through pathway completion.',link:'https://www.asla.org/become-a-la/dream-big-with-design-a-showcase-of-landscape-architecture-and-prek-12-design-learning',date:'Ongoing'},
+  {title:'Digital Certificates Program',desc:'Students earn digital certificates by completing learning pathways and submitting reflections. Educators earn professional development hours. Contact careerdiscovery@asla.org.',link:'mailto:careerdiscovery@asla.org',date:'Ongoing'},
+];
+
+const PARTNERS = [
+  {name:'American Institute of Architects',abbr:'AIA',desc:'K-12 educational outreach introducing students to architecture and landscape architecture.'},
+  {name:'Boys & Girls Club of America',abbr:'BGCA',desc:'Design day activities at ASLA headquarters.',link:'https://www.asla.org/become-a-la/career-discovery/boys-and-girls-club-of-america'},
+  {name:'Future City Competition',abbr:'Future City',desc:'ASLA is the first and only design group as a Special Award Sponsor in this international STEM competition with 50,000+ participants since 2018.'},
+  {name:'Girl Scouts of the USA',abbr:'GSUSA',desc:'Annual visits to ASLA headquarters with hands-on activities and Career Discovery programming.',link:'https://www.asla.org/become-a-la/career-discovery/girl-scouts'},
+  {name:'Howard University Middle School',abbr:'HUMS',desc:'PARK(ing) Day collaboration — parklet design, sustainability exploration.',link:'https://www.asla.org/become-a-la/career-discovery/howard-university-middle-school'},
+  {name:'National Building Museum',abbr:'NBM',desc:'Regular collaboration including Building Stories, Lawn Days, Girl Scout Days, and Teacher Appreciation events.'},
+  {name:'National Society of Black Engineers',abbr:'NSBE',desc:'DMV NSBE Jr. Chapter — accessible playground design competition at Howard University.',link:'https://www.asla.org/become-a-la/career-discovery/(clone)-nsbe-landscape-architecture-meets-robotics-with-asla'},
+  {name:'Scouting America',abbr:'BSA',desc:'ASLA members serve as merit badge counselors for the Landscape Architecture Merit Badge — design, environmental stewardship, and creative problem-solving.'},
+];
+
+const QUIZ_QUESTIONS = [
+  {q:'You find an empty lot in your neighborhood. What would you do with it?',opts:['Plant a native wildflower meadow','Build a playground for all abilities','Design a rain garden to capture stormwater','Create a community gathering space with seating'],types:['eco','community','water','urban']},
+  {q:'What sounds like the most fun field trip?',opts:['A national park or nature preserve','A children\'s hospital rooftop garden','A stormwater treatment wetland','A city rooftop with a skyline view'],types:['eco','community','water','urban']},
+  {q:'Which problem would you most want to solve?',opts:['Disappearing habitats for wildlife','Neighborhoods without safe places to play','Flooding in cities after big storms','Boring concrete spaces that nobody uses'],types:['eco','community','water','urban']},
+  {q:'Pick your favorite material to work with:',opts:['Native plants and natural stone','Rubber surfacing and bright colors','Bioswales and permeable pavement','Concrete, steel, and string lights'],types:['eco','community','water','urban']},
+  {q:'What would you title your first big project?',opts:['"Bringing Back the Butterflies"','"Play for Everyone"','"The Sponge City"','"Streets Alive"'],types:['eco','community','water','urban']},
+  {q:'Which superpower would help you most at work?',opts:['Talking to animals','Reading kids\' minds to know what they want to play on','Controlling the weather','Seeing through walls to plan underground systems'],types:['eco','community','water','urban']},
+];
+
+const QUIZ_RESULTS = {
+  eco:{title:'Ecological Restoration Specialist',desc:'You care deeply about nature and want to design landscapes that bring wildlife back, restore habitats, and connect people with the natural world. Think native plant meadows, wildlife corridors, and living shorelines.',color:'#4CAF50'},
+  community:{title:'Community Design Champion',desc:'You believe everyone deserves beautiful, accessible outdoor spaces. You\'d design inclusive playgrounds, healing gardens, and gathering spaces where people of all ages and abilities feel welcome.',color:'#5B9BD5'},
+  water:{title:'Stormwater and Resilience Designer',desc:'You love solving big problems with creative solutions. You\'d design rain gardens, green roofs, and bioswales that make cities more resilient against flooding and climate change.',color:'#00ACC1'},
+  urban:{title:'Urban Place-Maker',desc:'You see potential in every sidewalk, rooftop, and alley. You\'d transform underused urban spaces into vibrant plazas, parklets, streetscapes, and pop-up parks that bring communities together.',color:'#E8A838'},
+};
+
+const COLORING_COLORS = [
+  '#2E7D32','#4CAF50','#81BC00','#C8E6C9',
+  '#1565C0','#5B9BD5','#87CEEB','#B3E5FC',
+  '#F4D03F','#E8A838','#FF8F00','#FFE082',
+  '#C62828','#E8836B','#E88BBF','#F8BBD0',
+  '#6A1B9A','#9B72CF','#CE93D8',
+  '#5D4037','#8D6E63','#D7CCC8',
+  '#2D2D2D','#9E9E9E','#FFFFFF',
+];
+
+const BRUSH_SIZES = [4,8,14,24,40];
+
+const PARK_ELEMENTS = [
+  {name:'Tree',icon:'&#127795;',size:50},
+  {name:'Evergreen',icon:'&#127794;',size:48},
+  {name:'Palm',icon:'&#127796;',size:46},
+  {name:'Flower',icon:'&#127804;',size:36},
+  {name:'Tulip',icon:'&#127799;',size:34},
+  {name:'Sunflower',icon:'&#127803;',size:38},
+  {name:'Bench',icon:'&#129681;',size:40},
+  {name:'Fountain',icon:'&#9970;',size:44},
+  {name:'Playground',icon:'&#127904;',size:42},
+  {name:'Path',icon:'&#128740;',size:36},
+  {name:'Pond',icon:'&#128167;',size:42},
+  {name:'Bird',icon:'&#128038;',size:32},
+  {name:'Butterfly',icon:'&#129419;',size:30},
+  {name:'Dog',icon:'&#128054;',size:32},
+  {name:'Person',icon:'&#129489;',size:36},
+  {name:'House',icon:'&#127968;',size:44},
+  {name:'Bridge',icon:'&#127753;',size:40},
+  {name:'Sun',icon:'&#9728;&#65039;',size:44},
+];
+
+const MEMORY_ICONS = [
+  {name:'Tree',icon:'&#127795;'},
+  {name:'Flower',icon:'&#127804;'},
+  {name:'Sun',icon:'&#9728;&#65039;'},
+  {name:'Butterfly',icon:'&#129419;'},
+  {name:'Bird',icon:'&#128038;'},
+  {name:'Fountain',icon:'&#9970;'},
+  {name:'Park',icon:'&#127795;&#127795;'},
+  {name:'Leaf',icon:'&#127807;'},
+];
+
+/* ────────────────────────────────────────────────────────────────
+   RENDER FUNCTIONS
+   ──────────────────────────────────────────────────────────── */
+
+function renderActivities(filter='all'){
+  const grid=document.getElementById('activityGrid');
+  const filtered=ACTIVITIES.filter(a=>a.ageGroups.includes(filter));
+  grid.innerHTML=filtered.map((a,i)=>`
+    <a href="${a.link}" ${a.external?'target="_blank" rel="noopener"':''} class="activity-card fade-in delay-${i%4+1}" style="text-decoration:none;color:inherit;">
+      <div class="card-visual" style="background:${a.bg}">${a.icon}</div>
+      <div class="card-body">
+        <span class="card-badge badge-${a.badge}">${a.badge}</span>
+        <h3>${a.title}</h3>
+        <p>${a.desc}</p>
+        <span class="card-ages">${a.ages}</span>
+      </div>
+    </a>
+  `).join('');
+}
+
+function renderVideos(){
+  const grid=document.getElementById('videoGrid');
+  grid.innerHTML=VIDEOS.map((v,i)=>`
+    <div class="video-card fade-in delay-${i%3+1}">
+      <div class="video-thumb" style="background:${v.bg}" onclick="${v.vimeo?`openVideoModal('${v.vimeo}','${v.title.replace(/'/g,"\\'")}')`:`showToast('Full video available in the ASLA Multimedia Library')`}">
+        <div class="play-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#003A49" stroke-width="2.5"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+        </div>
+      </div>
+      <div class="card-body">
+        <span class="card-badge badge-video">${v.grade}</span>
+        <h3>${v.title}</h3>
+        <p>${v.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderPrintables(){
+  const grid=document.getElementById('printablesGrid');
+  grid.innerHTML=PRINTABLES.map((p,i)=>`
+    <div class="printable-card fade-in delay-${i%4+1}">
+      <div class="printable-preview" style="background:${p.bg}">${p.icon}</div>
+      <div class="card-body">
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+        ${p.link?`<a href="${p.link}" target="_blank" rel="noopener" class="btn btn-sm btn-teal">Download</a>`:`<button class="btn btn-sm btn-teal" onclick="generatePrintable('${p.title}')">Print Coloring Page</button>`}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderCurriculum(){
+  const grid=document.getElementById('curriculumGrid');
+  grid.innerHTML=CURRICULUM.map((c,i)=>`
+    <div class="edu-card fade-in delay-${i%3+1}">
+      <div class="edu-icon" style="background:${c.bg}">${c.icon}</div>
+      <h3>${c.title}</h3>
+      <p>${c.desc}</p>
+      <span class="edu-meta">${c.grades}</span>
+      <a href="${c.link}" target="_blank" rel="noopener" class="btn btn-sm btn-teal">Access Resource</a>
+    </div>
+  `).join('');
+}
+
+function renderEduActivities(){
+  const grid=document.getElementById('activitiesGrid');
+  grid.innerHTML=EDU_ACTIVITIES.map((a,i)=>`
+    <div class="edu-card fade-in delay-${i%3+1}">
+      <div class="edu-icon" style="background:${a.bg}">${a.icon}</div>
+      <h3>${a.title}</h3>
+      <p>${a.desc}</p>
+      <span class="edu-meta">${a.grades}</span>
+    </div>
+  `).join('');
+}
+
+function renderPD(){
+  const grid=document.getElementById('pdGrid');
+  grid.innerHTML=PD_ITEMS.map((p,i)=>`
+    <div class="edu-card fade-in delay-${i%2+1}">
+      <div style="display:flex;align-items:center;gap:var(--space-md);">
+        <span style="font-size:14px;font-weight:700;color:var(--asla-green);font-family:var(--font-condensed);letter-spacing:.08em;">${p.date}</span>
+      </div>
+      <h3>${p.title}</h3>
+      <p>${p.desc}</p>
+      <a href="${p.link}" ${p.link.startsWith('mailto')?'':'target="_blank" rel="noopener"'} class="btn btn-sm btn-teal">${p.link.startsWith('mailto')?'Contact':'Learn More'}</a>
+    </div>
+  `).join('');
+}
+
+function renderPartners(){
+  const strip=document.getElementById('partnerStrip');
+  strip.innerHTML=PARTNERS.map(p=>`<div class="partner-logo">${p.abbr}</div>`).join('');
+  const grid=document.getElementById('partnerGrid');
+  grid.innerHTML=PARTNERS.map((p,i)=>`
+    <div class="edu-card fade-in delay-${i%3+1}">
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      ${p.link?`<a href="${p.link}" target="_blank" rel="noopener" class="btn btn-sm btn-teal">Learn More</a>`:''}
+    </div>
+  `).join('');
+}
+
+/* ────────────────────────────────────────────────────────────────
+   AGE TOGGLE
+   ──────────────────────────────────────────────────────────── */
+document.getElementById('ageToggle').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  document.querySelectorAll('#ageToggle button').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  renderActivities(e.target.dataset.age);
+});
+
+/* ────────────────────────────────────────────────────────────────
+   EDUCATOR TABS
+   ──────────────────────────────────────────────────────────── */
+document.getElementById('eduTabBar').addEventListener('click',e=>{
+  if(!e.target.classList.contains('tab-btn'))return;
+  document.querySelectorAll('#eduTabBar .tab-btn').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  document.querySelectorAll('#educators .tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelector(`#educators .tab-panel[data-tab="${e.target.dataset.tab}"]`).classList.add('active');
+});
+
+/* ────────────────────────────────────────────────────────────────
+   COLORING STUDIO
+   ──────────────────────────────────────────────────────────── */
+const canvas=document.getElementById('coloringCanvas');
+const ctx=canvas.getContext('2d');
+let drawing=false,currentColor='#2E7D32',currentBrush=8;
+let strokes=[],currentStroke=null;
+
+const SCENES={
+  park:{bg:'#E8F5E9',elements:[
+    {type:'rect',x:0,y:350,w:900,h:150,color:'#C8E6C9',label:'grass'},
+    {type:'path',points:[[200,350],[250,380],[350,390],[500,385],[650,370],[750,350]],color:'#D7CCC8',width:40,label:'path'},
+    {type:'circle',x:700,y:380,r:50,color:'#B3E5FC',label:'pond'},
+    {type:'tree',x:150,y:280,label:'tree 1'},{type:'tree',x:400,y:260,label:'tree 2'},{type:'tree',x:650,y:290,label:'tree 3'},
+    {type:'bench',x:320,y:355,label:'bench'},
+    {type:'flower',x:100,y:370,label:'flowers'},{type:'flower',x:500,y:365,label:'flowers'},
+    {type:'rect',x:0,y:0,w:900,h:120,color:'#BBDEFB',label:'sky'},
+    {type:'sun',x:780,y:60},
+  ]},
+  playground:{bg:'#BBDEFB',elements:[
+    {type:'rect',x:0,y:300,w:900,h:200,color:'#C8E6C9',label:'ground'},
+    {type:'rect',x:200,y:280,w:120,h:20,color:'#8D6E63',label:'beam'},
+    {type:'rect',x:200,y:220,w:10,h:60,color:'#6D4C41',label:'pole'},{type:'rect',x:310,y:220,w:10,h:60,color:'#6D4C41',label:'pole'},
+    {type:'rect',x:500,y:250,w:80,h:50,color:'#FFE082',label:'slide base'},
+    {type:'line',x1:500,y1:250,x2:620,y2:300,color:'#FDD835',width:8,label:'slide'},
+    {type:'swing',x:700,y:200,label:'swing'},
+    {type:'circle',x:400,y:350,r:60,color:'#D7CCC8',label:'sand pit'},
+    {type:'tree',x:80,y:240},{type:'tree',x:820,y:250},
+    {type:'rect',x:0,y:0,w:900,h:100,color:'#90CAF9',label:'sky'},
+    {type:'sun',x:100,y:50},
+  ]},
+  garden:{bg:'#F1F8E9',elements:[
+    {type:'rect',x:0,y:350,w:900,h:150,color:'#A5D6A7',label:'garden bed'},
+    {type:'rect',x:0,y:0,w:900,h:100,color:'#C8E6C9',label:'sky'},
+    {type:'gardenRow',y:300,flowers:8},{type:'gardenRow',y:340,flowers:10},{type:'gardenRow',y:380,flowers:12},
+    {type:'butterfly',x:300,y:200},{type:'butterfly',x:550,y:180},{type:'butterfly',x:150,y:250},
+    {type:'bee',x:400,y:220},{type:'bee',x:700,y:200},
+    {type:'sun',x:800,y:60},
+    {type:'fence',y:420},
+  ]},
+  greenroof:{bg:'#ECEFF1',elements:[
+    {type:'rect',x:0,y:0,w:900,h:200,color:'#90CAF9',label:'sky'},
+    {type:'rect',x:50,y:200,w:800,h:300,color:'#BDBDBD',label:'building'},
+    {type:'rect',x:50,y:200,w:800,h:20,color:'#9E9E9E',label:'roof edge'},
+    {type:'rect',x:100,y:200,w:600,h:10,color:'#A5D6A7',label:'green roof'},
+    {type:'rect',x:100,y:160,w:60,h:50,color:'#81C784',label:'planter 1'},
+    {type:'rect',x:250,y:170,w:80,h:40,color:'#66BB6A',label:'planter 2'},
+    {type:'rect',x:450,y:165,w:70,h:45,color:'#81C784',label:'planter 3'},
+    {type:'rect',x:600,y:155,w:90,h:55,color:'#66BB6A',label:'planter 4'},
+    {type:'rect',x:350,y:175,w:50,h:35,color:'#5B9BD5',label:'solar panel'},
+    {type:'sun',x:780,y:70},
+    {type:'rect',x:0,y:460,w:900,h:40,color:'#757575',label:'street'},
+  ]},
+  trail:{bg:'#E8F5E9',elements:[
+    {type:'rect',x:0,y:0,w:900,h:130,color:'#B2DFDB',label:'sky'},
+    {type:'rect',x:0,y:300,w:900,h:200,color:'#A5D6A7',label:'ground'},
+    {type:'path',points:[[0,400],[150,370],[300,380],[450,360],[600,370],[750,350],[900,340]],color:'#BCAAA4',width:30,label:'trail'},
+    {type:'tree',x:80,y:220},{type:'tree',x:250,y:200},{type:'tree',x:450,y:210},{type:'tree',x:650,y:190},{type:'tree',x:800,y:230},
+    {type:'tree',x:160,y:260},{type:'tree',x:550,y:240},{type:'tree',x:750,y:260},
+    {type:'rect',x:370,y:345,w:60,h:40,color:'#8D6E63',label:'bridge'},
+    {type:'circle',x:400,y:395,r:30,color:'#80DEEA',label:'stream'},
+    {type:'sun',x:800,y:60},
+  ]},
+};
+
+function drawScene(name){
+  const scene=SCENES[name];
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle=scene.bg;
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  scene.elements.forEach(el=>{
+    ctx.save();
+    switch(el.type){
+      case 'rect':
+        ctx.fillStyle=el.color;ctx.fillRect(el.x,el.y,el.w,el.h);break;
+      case 'circle':
+        ctx.fillStyle=el.color;ctx.beginPath();ctx.arc(el.x,el.y,el.r,0,Math.PI*2);ctx.fill();break;
+      case 'path':
+        ctx.strokeStyle=el.color;ctx.lineWidth=el.width;ctx.lineCap='round';ctx.lineJoin='round';
+        ctx.beginPath();el.points.forEach((p,i)=>i===0?ctx.moveTo(p[0],p[1]):ctx.lineTo(p[0],p[1]));ctx.stroke();break;
+      case 'line':
+        ctx.strokeStyle=el.color;ctx.lineWidth=el.width;ctx.lineCap='round';
+        ctx.beginPath();ctx.moveTo(el.x1,el.y1);ctx.lineTo(el.x2,el.y2);ctx.stroke();break;
+      case 'tree':
+        ctx.fillStyle='#6D4C41';ctx.fillRect(el.x-4,el.y+30,8,30);
+        ctx.fillStyle='#66BB6A';ctx.beginPath();ctx.arc(el.x,el.y+10,28,0,Math.PI*2);ctx.fill();
+        ctx.fillStyle='#81C784';ctx.beginPath();ctx.arc(el.x-10,el.y+20,18,0,Math.PI*2);ctx.fill();
+        ctx.beginPath();ctx.arc(el.x+12,el.y+15,20,0,Math.PI*2);ctx.fill();break;
+      case 'bench':
+        ctx.fillStyle='#8D6E63';ctx.fillRect(el.x,el.y,60,6);ctx.fillRect(el.x+5,el.y+6,4,14);ctx.fillRect(el.x+51,el.y+6,4,14);
+        ctx.fillStyle='#A1887F';ctx.fillRect(el.x,el.y-12,60,4);break;
+      case 'flower':
+        for(let i=0;i<5;i++){const fx=el.x+i*18;ctx.fillStyle='#4CAF50';ctx.fillRect(fx+3,el.y-10,2,12);
+        ctx.fillStyle=['#E8836B','#F4D03F','#E88BBF','#9B72CF','#5B9BD5'][i];ctx.beginPath();ctx.arc(fx+4,el.y-14,6,0,Math.PI*2);ctx.fill();}break;
+      case 'sun':
+        ctx.fillStyle='#FDD835';ctx.beginPath();ctx.arc(el.x,el.y,30,0,Math.PI*2);ctx.fill();
+        ctx.strokeStyle='#FDD835';ctx.lineWidth=3;
+        for(let a=0;a<12;a++){const angle=a*Math.PI/6;ctx.beginPath();ctx.moveTo(el.x+Math.cos(angle)*34,el.y+Math.sin(angle)*34);ctx.lineTo(el.x+Math.cos(angle)*44,el.y+Math.sin(angle)*44);ctx.stroke();}break;
+      case 'swing':
+        ctx.fillStyle='#6D4C41';ctx.fillRect(el.x-2,el.y,4,80);ctx.fillRect(el.x+58,el.y,4,80);ctx.fillRect(el.x-2,el.y,62,4);
+        ctx.strokeStyle='#9E9E9E';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(el.x+15,el.y+4);ctx.lineTo(el.x+15,el.y+60);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(el.x+45,el.y+4);ctx.lineTo(el.x+45,el.y+60);ctx.stroke();
+        ctx.fillStyle='#FF8F00';ctx.fillRect(el.x+8,el.y+58,14,5);ctx.fillRect(el.x+38,el.y+58,14,5);break;
+      case 'butterfly':
+        ctx.fillStyle='#E88BBF';ctx.beginPath();ctx.ellipse(el.x-8,el.y-4,10,6,-.3,0,Math.PI*2);ctx.fill();
+        ctx.beginPath();ctx.ellipse(el.x+8,el.y-4,10,6,.3,0,Math.PI*2);ctx.fill();
+        ctx.fillStyle='#9B72CF';ctx.beginPath();ctx.ellipse(el.x-6,el.y+4,7,5,-.2,0,Math.PI*2);ctx.fill();
+        ctx.beginPath();ctx.ellipse(el.x+6,el.y+4,7,5,.2,0,Math.PI*2);ctx.fill();
+        ctx.fillStyle='#2D2D2D';ctx.fillRect(el.x-1,el.y-6,2,14);break;
+      case 'bee':
+        ctx.fillStyle='#FDD835';ctx.beginPath();ctx.ellipse(el.x,el.y,10,7,0,0,Math.PI*2);ctx.fill();
+        ctx.fillStyle='#2D2D2D';ctx.fillRect(el.x-4,el.y-7,3,14);ctx.fillRect(el.x+2,el.y-7,3,14);
+        ctx.fillStyle='rgba(200,220,255,.5)';ctx.beginPath();ctx.ellipse(el.x-5,el.y-9,6,4,-.5,0,Math.PI*2);ctx.fill();
+        ctx.beginPath();ctx.ellipse(el.x+5,el.y-9,6,4,.5,0,Math.PI*2);ctx.fill();break;
+      case 'gardenRow':
+        for(let i=0;i<el.flowers;i++){
+          const fx=60+i*(780/el.flowers);
+          ctx.fillStyle='#4CAF50';ctx.fillRect(fx,el.y,2,20);
+          const colors=['#E8836B','#F4D03F','#E88BBF','#9B72CF','#5B9BD5','#81BC00'];
+          ctx.fillStyle=colors[i%colors.length];ctx.beginPath();ctx.arc(fx+1,el.y-4,5+Math.random()*3,0,Math.PI*2);ctx.fill();
+        }break;
+      case 'fence':
+        ctx.fillStyle='#BCAAA4';
+        for(let i=0;i<18;i++){ctx.fillRect(i*50+10,el.y,4,30);}
+        ctx.fillRect(0,el.y+8,900,3);ctx.fillRect(0,el.y+20,900,3);break;
+    }
+    ctx.restore();
+  });
+
+  strokes.forEach(s=>replayStroke(s));
+}
+
+function replayStroke(s){
+  if(s.points.length<2)return;
+  ctx.save();
+  ctx.strokeStyle=s.color;ctx.lineWidth=s.size;ctx.lineCap='round';ctx.lineJoin='round';
+  ctx.beginPath();ctx.moveTo(s.points[0][0],s.points[0][1]);
+  for(let i=1;i<s.points.length;i++)ctx.lineTo(s.points[i][0],s.points[i][1]);
+  ctx.stroke();ctx.restore();
+}
+
+canvas.addEventListener('pointerdown',e=>{
+  drawing=true;
+  const rect=canvas.getBoundingClientRect();
+  const scaleX=canvas.width/rect.width;
+  const scaleY=canvas.height/rect.height;
+  currentStroke={color:currentColor,size:currentBrush,points:[[
+    (e.clientX-rect.left)*scaleX,
+    (e.clientY-rect.top)*scaleY
+  ]]};
+});
+canvas.addEventListener('pointermove',e=>{
+  if(!drawing||!currentStroke)return;
+  const rect=canvas.getBoundingClientRect();
+  const scaleX=canvas.width/rect.width;
+  const scaleY=canvas.height/rect.height;
+  const x=(e.clientX-rect.left)*scaleX;
+  const y=(e.clientY-rect.top)*scaleY;
+  currentStroke.points.push([x,y]);
+  ctx.strokeStyle=currentStroke.color;ctx.lineWidth=currentStroke.size;ctx.lineCap='round';ctx.lineJoin='round';
+  const pts=currentStroke.points;
+  if(pts.length>=2){
+    ctx.beginPath();ctx.moveTo(pts[pts.length-2][0],pts[pts.length-2][1]);ctx.lineTo(x,y);ctx.stroke();
+  }
+});
+canvas.addEventListener('pointerup',()=>{
+  if(currentStroke&&currentStroke.points.length>1){strokes.push(currentStroke);}
+  drawing=false;currentStroke=null;
+});
+canvas.addEventListener('pointerleave',()=>{
+  if(currentStroke&&currentStroke.points.length>1){strokes.push(currentStroke);}
+  drawing=false;currentStroke=null;
+});
+
+function clearCanvas(){strokes=[];drawScene(currentScene);}
+function undoCanvas(){strokes.pop();drawScene(currentScene);}
+function saveColoring(){
+  const link=document.createElement('a');
+  link.download='my-landscape-coloring.png';
+  link.href=canvas.toDataURL();
+  link.click();
+  showToast('Your coloring has been saved as an image');
+}
+
+let currentScene='park';
+document.getElementById('sceneSelector').addEventListener('click',e=>{
+  if(!e.target.classList.contains('scene-btn'))return;
+  document.querySelectorAll('.scene-btn').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  currentScene=e.target.dataset.scene;
+  strokes=[];
+  drawScene(currentScene);
+});
+
+// Color swatches
+const swatchesEl=document.getElementById('colorSwatches');
+COLORING_COLORS.forEach((c,i)=>{
+  const btn=document.createElement('button');
+  btn.className='color-swatch'+(i===0?' active':'');
+  btn.style.background=c;
+  if(c==='#FFFFFF')btn.style.border='2px solid #ccc';
+  btn.onclick=()=>{currentColor=c;document.querySelectorAll('.color-swatch').forEach(s=>s.classList.remove('active'));btn.classList.add('active');};
+  swatchesEl.appendChild(btn);
+});
+
+// Brush sizes
+const brushEl=document.getElementById('brushSizes');
+BRUSH_SIZES.forEach((s,i)=>{
+  const btn=document.createElement('button');
+  btn.className='brush-btn'+(i===1?' active':'');
+  btn.style.width=(20+s)+'px';btn.style.height=(20+s)+'px';
+  const dot=document.createElement('span');
+  dot.style.cssText=`width:${s}px;height:${s}px;border-radius:50%;background:white;display:block;`;
+  btn.appendChild(dot);
+  btn.onclick=()=>{currentBrush=s;document.querySelectorAll('.brush-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');};
+  brushEl.appendChild(btn);
+});
+
+/* ────────────────────────────────────────────────────────────────
+   PARK BUILDER
+   ──────────────────────────────────────────────────────────── */
+let parkItems=[];
+let selectedParkElement=null;
+
+function renderParkToolbar(){
+  const toolbar=document.getElementById('parkToolbar');
+  toolbar.innerHTML='<label style="font-size:13px;font-weight:700;color:var(--asla-teal);font-family:var(--font-condensed);letter-spacing:.08em;text-transform:uppercase;">Elements:</label>'+
+    PARK_ELEMENTS.map(el=>`
+      <button class="element-btn" data-element="${el.name}" data-icon="${el.icon}" data-size="${el.size}">
+        <span class="icon">${el.icon}</span>
+        <span>${el.name}</span>
+      </button>
+    `).join('');
+}
+
+document.getElementById('parkToolbar').addEventListener('click',e=>{
+  const btn=e.target.closest('.element-btn');
+  if(!btn)return;
+  document.querySelectorAll('.element-btn').forEach(b=>b.style.borderColor='transparent');
+  btn.style.borderColor='var(--asla-green)';
+  selectedParkElement={name:btn.dataset.element,icon:btn.dataset.icon,size:parseInt(btn.dataset.size)};
+});
+
+document.getElementById('parkCanvas').addEventListener('click',e=>{
+  if(!selectedParkElement)return;
+  const rect=e.currentTarget.getBoundingClientRect();
+  const x=e.clientX-rect.left;
+  const y=e.clientY-rect.top;
+  const item=document.createElement('div');
+  item.className='park-item';
+  item.style.left=(x-selectedParkElement.size/2)+'px';
+  item.style.top=(y-selectedParkElement.size/2)+'px';
+  item.style.fontSize=selectedParkElement.size+'px';
+  item.innerHTML=selectedParkElement.icon;
+  item.title=selectedParkElement.name;
+
+  let isDragging=false,startX,startY,origLeft,origTop;
+  item.addEventListener('pointerdown',ev=>{
+    ev.stopPropagation();
+    isDragging=true;
+    startX=ev.clientX;startY=ev.clientY;
+    origLeft=parseInt(item.style.left);origTop=parseInt(item.style.top);
+    item.style.zIndex='10';
+  });
+  document.addEventListener('pointermove',ev=>{
+    if(!isDragging)return;
+    item.style.left=(origLeft+ev.clientX-startX)+'px';
+    item.style.top=(origTop+ev.clientY-startY)+'px';
+  });
+  document.addEventListener('pointerup',()=>{if(isDragging){isDragging=false;item.style.zIndex='';}});
+
+  item.addEventListener('dblclick',ev=>{
+    ev.stopPropagation();
+    item.remove();
+    parkItems=parkItems.filter(p=>p!==item);
+    updateParkCount();
+  });
+
+  document.getElementById('parkCanvas').appendChild(item);
+  parkItems.push(item);
+  updateParkCount();
+});
+
+function updateParkCount(){
+  document.getElementById('parkItemCount').textContent=parkItems.length+' element'+(parkItems.length!==1?'s':'')+' placed';
+}
+function clearPark(){
+  parkItems.forEach(i=>i.remove());
+  parkItems=[];
+  updateParkCount();
+}
+function savePark(){
+  showToast('Saving park design — take a screenshot to keep your creation');
+}
+
+/* ────────────────────────────────────────────────────────────────
+   MEMORY GAME
+   ──────────────────────────────────────────────────────────── */
+let memoryCards=[],flippedCards=[],matchedPairs=0,moves=0,gameTimer=null,gameSeconds=0;
+
+function initMemoryGame(){
+  const board=document.getElementById('memoryBoard');
+  matchedPairs=0;moves=0;gameSeconds=0;flippedCards=[];
+  document.getElementById('matchCount').textContent='0';
+  document.getElementById('moveCount').textContent='0';
+  document.getElementById('timerDisplay').textContent='0:00';
+  if(gameTimer)clearInterval(gameTimer);
+
+  let pairs=[...MEMORY_ICONS,...MEMORY_ICONS];
+  for(let i=pairs.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pairs[i],pairs[j]]=[pairs[j],pairs[i]];}
+
+  board.innerHTML=pairs.map((p,i)=>`
+    <div class="memory-card" data-idx="${i}" data-name="${p.name}" onclick="flipCard(this)">
+      <div class="card-front"><i data-lucide="help-circle"></i></div>
+      <div class="card-back"><span style="font-size:40px;">${p.icon}</span></div>
+    </div>
+  `).join('');
+  if(window.lucide)lucide.createIcons();
+}
+
+function flipCard(card){
+  if(flippedCards.length>=2||card.classList.contains('flipped')||card.classList.contains('matched'))return;
+  if(!gameTimer){
+    gameTimer=setInterval(()=>{
+      gameSeconds++;
+      const m=Math.floor(gameSeconds/60);
+      const s=gameSeconds%60;
+      document.getElementById('timerDisplay').textContent=m+':'+(s<10?'0':'')+s;
+    },1000);
+  }
+  card.classList.add('flipped');
+  flippedCards.push(card);
+  if(flippedCards.length===2){
+    moves++;
+    document.getElementById('moveCount').textContent=moves;
+    if(flippedCards[0].dataset.name===flippedCards[1].dataset.name){
+      flippedCards[0].classList.add('matched');
+      flippedCards[1].classList.add('matched');
+      matchedPairs++;
+      document.getElementById('matchCount').textContent=matchedPairs;
+      flippedCards=[];
+      if(matchedPairs===MEMORY_ICONS.length){
+        clearInterval(gameTimer);gameTimer=null;
+        setTimeout(()=>showToast('Congratulations — all matches found in '+moves+' moves'),500);
+      }
+    } else {
+      setTimeout(()=>{
+        flippedCards.forEach(c=>c.classList.remove('flipped'));
+        flippedCards=[];
+      },800);
+    }
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   CAREER QUIZ
+   ──────────────────────────────────────────────────────────── */
+let quizIndex=0,quizScores={eco:0,community:0,water:0,urban:0};
+
+function renderQuiz(){
+  if(quizIndex>=QUIZ_QUESTIONS.length){return renderQuizResult();}
+  const q=QUIZ_QUESTIONS[quizIndex];
+  const pct=((quizIndex)/QUIZ_QUESTIONS.length*100).toFixed(0);
+  const wrap=document.getElementById('quizWrap');
+  wrap.innerHTML=`
+    <div class="quiz-progress"><div class="quiz-progress-bar" style="width:${pct}%"></div></div>
+    <div class="quiz-question">${q.q}</div>
+    <div class="quiz-options">
+      ${q.opts.map((opt,i)=>`
+        <button class="quiz-option" onclick="answerQuiz(${i})">
+          <span class="opt-letter">${'ABCD'[i]}</span>
+          <span>${opt}</span>
+        </button>
+      `).join('')}
+    </div>
+    <div style="text-align:center;margin-top:var(--space-lg);font-size:13px;color:var(--placeholder-gray);">Question ${quizIndex+1} of ${QUIZ_QUESTIONS.length}</div>
+  `;
+}
+
+function answerQuiz(idx){
+  const q=QUIZ_QUESTIONS[quizIndex];
+  quizScores[q.types[idx]]++;
+  quizIndex++;
+  renderQuiz();
+}
+
+function renderQuizResult(){
+  const top=Object.entries(quizScores).sort((a,b)=>b[1]-a[1])[0][0];
+  const r=QUIZ_RESULTS[top];
+  document.getElementById('quizWrap').innerHTML=`
+    <div class="quiz-result">
+      <div class="quiz-progress"><div class="quiz-progress-bar" style="width:100%"></div></div>
+      <div style="font-size:80px;margin:var(--space-lg) 0;">&#127793;</div>
+      <div class="score" style="color:${r.color};">${r.title}</div>
+      <div class="message">${r.desc}</div>
+      <div style="margin-top:var(--space-xl);display:flex;gap:var(--space-md);justify-content:center;flex-wrap:wrap;">
+        <button class="btn btn-teal" onclick="resetQuiz()">Take Again</button>
+        <a href="https://www.asla.org/become-a-la/your-path" target="_blank" rel="noopener" class="btn btn-primary">Explore Your Path</a>
+      </div>
+    </div>
+  `;
+}
+
+function resetQuiz(){
+  quizIndex=0;quizScores={eco:0,community:0,water:0,urban:0};
+  renderQuiz();
+}
+
+/* ────────────────────────────────────────────────────────────────
+   VIDEO MODAL
+   ──────────────────────────────────────────────────────────── */
+function openVideoModal(vimeoId,title){
+  document.getElementById('videoModalBody').innerHTML=`
+    <h2 style="margin-bottom:var(--space-lg);color:var(--asla-teal);">${title}</h2>
+    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius-md);">
+      <iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay;fullscreen" allowfullscreen></iframe>
+    </div>
+  `;
+  document.getElementById('videoModal').classList.add('open');
+}
+function closeVideoModal(){
+  document.getElementById('videoModal').classList.remove('open');
+  document.getElementById('videoModalBody').innerHTML='';
+}
+document.getElementById('videoModal').addEventListener('click',e=>{
+  if(e.target===e.currentTarget)closeVideoModal();
+});
+
+/* ────────────────────────────────────────────────────────────────
+   PRINTABLE COLORING PAGE GENERATOR
+   ──────────────────────────────────────────────────────────── */
+function generatePrintable(title){
+  const printCanvas=document.createElement('canvas');
+  printCanvas.width=900;printCanvas.height=600;
+  const pctx=printCanvas.getContext('2d');
+  pctx.fillStyle='#FFFFFF';pctx.fillRect(0,0,900,600);
+
+  pctx.strokeStyle='#2D2D2D';pctx.lineWidth=2;
+
+  // Simple line-art scene
+  // Ground line
+  pctx.beginPath();pctx.moveTo(0,450);pctx.lineTo(900,450);pctx.stroke();
+
+  // Trees (outlines only)
+  [150,400,700].forEach(x=>{
+    pctx.beginPath();pctx.moveTo(x,450);pctx.lineTo(x,370);pctx.stroke();
+    pctx.beginPath();pctx.arc(x,340,35,0,Math.PI*2);pctx.stroke();
+  });
+
+  // Path
+  pctx.beginPath();pctx.moveTo(200,450);pctx.quadraticCurveTo(450,420,700,450);pctx.stroke();
+  pctx.beginPath();pctx.moveTo(220,460);pctx.quadraticCurveTo(450,430,680,460);pctx.stroke();
+
+  // Flowers
+  [120,300,500,600,800].forEach(x=>{
+    pctx.beginPath();pctx.moveTo(x,450);pctx.lineTo(x,430);pctx.stroke();
+    pctx.beginPath();pctx.arc(x,424,6,0,Math.PI*2);pctx.stroke();
+  });
+
+  // Sun
+  pctx.beginPath();pctx.arc(780,80,40,0,Math.PI*2);pctx.stroke();
+  for(let a=0;a<12;a++){const ang=a*Math.PI/6;pctx.beginPath();pctx.moveTo(780+Math.cos(ang)*46,80+Math.sin(ang)*46);pctx.lineTo(780+Math.cos(ang)*58,80+Math.sin(ang)*58);pctx.stroke();}
+
+  // Bench
+  pctx.strokeRect(350,430,80,6);pctx.beginPath();pctx.moveTo(355,436);pctx.lineTo(355,450);pctx.stroke();
+  pctx.beginPath();pctx.moveTo(425,436);pctx.lineTo(425,450);pctx.stroke();
+  pctx.strokeRect(350,418,80,4);
+
+  // Pond
+  pctx.beginPath();pctx.ellipse(550,470,50,20,0,0,Math.PI*2);pctx.stroke();
+
+  // Title
+  pctx.font='bold 20px sans-serif';pctx.fillStyle='#2D2D2D';pctx.textAlign='center';
+  pctx.fillText(title+' — Color Me!',450,560);
+  pctx.font='12px sans-serif';pctx.fillStyle='#9E9E9E';
+  pctx.fillText('ASLA Career Discovery — asla.org',450,580);
+
+  const link=document.createElement('a');
+  link.download=title.toLowerCase().replace(/\s+/g,'-')+'-coloring-page.png';
+  link.href=printCanvas.toDataURL();
+  link.click();
+  showToast('Coloring page downloaded — print it and start coloring');
+}
+
+/* ────────────────────────────────────────────────────────────────
+   TOAST
+   ──────────────────────────────────────────────────────────── */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+/* ────────────────────────────────────────────────────────────────
+   INIT
+   ──────────────────────────────────────────────────────────── */
+renderActivities();
+renderVideos();
+renderPrintables();
+renderCurriculum();
+renderEduActivities();
+renderPD();
+renderPartners();
+renderParkToolbar();
+drawScene('park');
+initMemoryGame();
+renderQuiz();
+
+// Init Lucide icons
+if(window.lucide)lucide.createIcons();
+
+// Responsive canvas sizing
+function resizeCanvas(){
+  const wrap=canvas.parentElement;
+  canvas.style.width=Math.min(900,wrap.clientWidth)+'px';
+  canvas.style.height='auto';
+}
+resizeCanvas();
+window.addEventListener('resize',resizeCanvas);
+</script>
+</body>
+</html>
