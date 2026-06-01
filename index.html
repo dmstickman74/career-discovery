@@ -843,14 +843,17 @@ const ACTIVITIES = [
 
 const VIDEOS = [
   {title:"What's The Big Idea?",desc:'Sing along with Billy Jonas and discover the big idea behind landscape architecture.',bg:'linear-gradient(135deg,var(--asla-teal),#1A6B5A)',grade:'All Ages',vimeo:'781179992',ageGroups:['all','k2','35','68','912']},
-  {title:'Sketch It Out',desc:'Watch landscape architects sketch their ideas from concept to paper in real time.',bg:'linear-gradient(135deg,#5B9BD5,#4A86C0)',grade:'ES / MS / HS',vimeo:null,ageGroups:['all','k2','35','68','912']},
-  {title:'Designing Your Perfect Park',desc:'Learn the design process behind creating a park that serves the whole community.',bg:'linear-gradient(135deg,#81BC00,#6B9E00)',grade:'MS / HS',vimeo:null,ageGroups:['all','68','912']},
-  {title:'Theme Park Design',desc:'Go behind the scenes to see how landscape architects shape theme park experiences.',bg:'linear-gradient(135deg,#9B72CF,#7E57C2)',grade:'MS / HS',vimeo:null,ageGroups:['all','68','912']},
-  {title:'Storytime: STEM Literacy',desc:'Story time readings that connect nature, design, and STEM learning — available in ASL, Mandarin, and Spanish.',bg:'linear-gradient(135deg,#E8836B,#D96A53)',grade:'Elementary',vimeo:null,ageGroups:['all','k2','35']},
-  {title:'Drone Zone',desc:'See landscapes from above — drones reveal the patterns and systems landscape architects design.',bg:'linear-gradient(135deg,#F4D03F,#D4B02F)',grade:'MS / HS',vimeo:null,ageGroups:['all','68','912']},
+  {title:'Sketch It Out',desc:'Watch landscape architects sketch their ideas from concept to paper in real time.',bg:'linear-gradient(135deg,#5B9BD5,#4A86C0)',grade:'ES / MS / HS',showcase:'12052349',ageGroups:['all','k2','35','68','912']},
+  {title:'Designing Your Perfect Park',desc:'Learn the design process behind creating a park that serves the whole community.',bg:'linear-gradient(135deg,#81BC00,#6B9E00)',grade:'MS / HS',vimeo:'611099554',ageGroups:['all','68','912']},
+  {title:'Theme Park Design',desc:'Go behind the scenes to see how landscape architects shape theme park experiences.',bg:'linear-gradient(135deg,#9B72CF,#7E57C2)',grade:'MS / HS',showcase:'12052241',ageGroups:['all','68','912']},
+  {title:'Storytime: STEM Literacy',desc:'Story time readings that connect nature, design, and STEM learning — available in ASL, Mandarin, and Spanish.',bg:'linear-gradient(135deg,#E8836B,#D96A53)',grade:'Elementary',showcase:'12052317',ageGroups:['all','k2','35']},
+  {title:'Drone Zone',desc:'See landscapes from above — drones reveal the patterns and systems landscape architects design.',bg:'linear-gradient(135deg,#F4D03F,#D4B02F)',grade:'MS / HS',vimeo:'1152998521',ageGroups:['all','68','912']},
   {title:'Birdland Project — STEM Spotlight',desc:'Richard Jones, ASLA, shows how the Birdland Project at Frances Scott Key Middle School enriches STEM education.',bg:'linear-gradient(135deg,#4CAF50,#388E3C)',grade:'MS / HS',vimeo:'223822212',ageGroups:['all','68','912']},
-  {title:'Hollywood Backdrops: Storyboarding',desc:'Discover how landscape design principles shape the outdoor sets and backdrops of film and television.',bg:'linear-gradient(135deg,#E8A838,#D09530)',grade:'MS / HS',vimeo:null,ageGroups:['all','68','912']},
+  {title:'Hollywood Backdrops: Storyboarding',desc:'Discover how landscape design principles shape the outdoor sets and backdrops of film and television.',bg:'linear-gradient(135deg,#E8A838,#D09530)',grade:'MS / HS',vimeo:'609913269',ageGroups:['all','68','912']},
   {title:'Behind the Scenes: Dream Big',desc:'A behind-the-scenes look at the making of ASLA\'s Dream Big production.',bg:'linear-gradient(135deg,#003A49,#0D4D5C)',grade:'All Ages',vimeo:'752204548',ageGroups:['all','k2','35','68','912']},
+  {title:'DeafSpace and Beyond',desc:'Explore how landscape architects design inclusive spaces for the Deaf community and people of all abilities.',bg:'linear-gradient(135deg,#78909C,#546E7A)',grade:'MS / HS',vimeo:'610006825',ageGroups:['all','68','912']},
+  {title:'EPA: Growing Together',desc:'See how greening and nutrition programs transform communities through landscape architecture and environmental design.',bg:'linear-gradient(135deg,#66BB6A,#43A047)',grade:'MS / HS',vimeo:'607795560',ageGroups:['all','68','912']},
+  {title:'DREAM BIG with Minecraft',desc:'Learn how to host a Dream Big event using Minecraft to explore landscape architecture concepts.',bg:'linear-gradient(135deg,#8D6E63,#6D4C41)',grade:'All Ages',showcase:'10638703',ageGroups:['all','k2','35','68','912']},
 ];
 
 const PRINTABLES = [
@@ -985,9 +988,9 @@ function renderVideos(age='all'){
   const filtered=VIDEOS.filter(v=>age==='all'||v.ageGroups.includes(age));
   grid.innerHTML=filtered.map((v,i)=>`
     <div class="video-card fade-in delay-${i%3+1}">
-      <div class="video-thumb" style="background:${v.bg}" onclick="${v.vimeo?`openVideoModal('${v.vimeo}','${v.title.replace(/'/g,"\\'")}')`:`showToast('Full video available in the ASLA Multimedia Library')`}">
+      <div class="video-thumb" style="background:${v.bg}" onclick="${v.vimeo?`openVideoModal('${v.vimeo}','${v.title.replace(/'/g,"\\'")}')`:v.showcase?`openShowcaseModal('${v.showcase}','${v.title.replace(/'/g,"\\'")}')`:``}">
         <div class="play-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#003A49" stroke-width="2.5"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+          ${v.showcase?'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#003A49" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>':'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#003A49" stroke-width="2.5"><polygon points="6 3 20 12 6 21 6 3"/></svg>'}
         </div>
       </div>
       <div class="card-body">
@@ -1974,6 +1977,16 @@ function openVideoModal(vimeoId,title){
     <h2 style="margin-bottom:var(--space-lg);color:var(--asla-teal);">${title}</h2>
     <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius-md);">
       <iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay;fullscreen" allowfullscreen></iframe>
+    </div>
+  `;
+  document.getElementById('videoModal').classList.add('open');
+}
+function openShowcaseModal(showcaseId,title){
+  document.getElementById('videoModalBody').innerHTML=`
+    <h2 style="margin-bottom:var(--space-sm);color:var(--asla-teal);">${title}</h2>
+    <p style="font-size:14px;color:var(--dark-gray);margin-bottom:var(--space-lg);">Browse and select a video to watch.</p>
+    <div style="position:relative;padding-bottom:75%;height:0;overflow:hidden;border-radius:var(--radius-md);">
+      <iframe src="https://vimeo.com/showcase/${showcaseId}/embed" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allow="autoplay;fullscreen;picture-in-picture" allowfullscreen></iframe>
     </div>
   `;
   document.getElementById('videoModal').classList.add('open');
