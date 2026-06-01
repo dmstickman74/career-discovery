@@ -2316,7 +2316,7 @@ function renderAdventure(){
             <button data-color="#2D2D2D" style="background:#2D2D2D;color:#fff;" onclick="setAdvColor(this,'#2D2D2D')">Black</button>
             <button onclick="advStrokes=[];renderAdvCanvas();" style="margin-left:auto;">Clear</button>
           </div>
-          <canvas id="advSketchCanvas" width="760" height="300" style="background:#fff;width:100%;max-width:760px;"></canvas>
+          <canvas id="advSketchCanvas" width="760" height="600" style="background:#fff;width:100%;max-width:760px;"></canvas>
         </div>
         <div style="display:flex;gap:var(--space-md);margin-top:var(--space-lg);justify-content:flex-end;">
           ${adventureStep>0?'<button class="btn btn-outline" style="border-color:var(--border-gray);color:var(--dark-gray);" onclick="advNav(-1);">Back</button>':''}
@@ -2527,7 +2527,7 @@ function renderJourney(){
             <button data-color="#2D2D2D" style="background:#2D2D2D;color:#fff;" onclick="setJrnColor(this,'#2D2D2D')">Black</button>
             <button onclick="jrnStrokes=[];renderJrnCanvas();" style="margin-left:auto;">Clear</button>
           </div>
-          <canvas id="jrnSketchCanvas" width="820" height="320" style="background:#fff;width:100%;max-width:820px;"></canvas>
+          <canvas id="jrnSketchCanvas" width="820" height="640" style="background:#fff;width:100%;max-width:820px;"></canvas>
         </div>
         <div style="display:flex;gap:var(--space-md);margin-top:var(--space-lg);justify-content:flex-end;">
           ${journeyStep>0?'<button class="btn btn-outline" style="border-color:var(--border-gray);color:var(--dark-gray);" onclick="jrnNav(-1);">Back</button>':''}
