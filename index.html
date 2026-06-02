@@ -980,6 +980,16 @@ const COLORING_COLORS = [
 
 const BRUSH_SIZES = [4,8,14,24,40];
 
+/* Custom SVG icons for items emoji can't represent well */
+const PI={
+  bench:'<svg viewBox="0 0 100 80" width="1em" height="1em"><rect x="8" y="22" width="84" height="7" rx="3" fill="#8B5A2B"/><rect x="8" y="12" width="84" height="6" rx="2" fill="#6B3A1B"/><rect x="12" y="29" width="6" height="8" fill="#6B3A1B"/><rect x="82" y="29" width="6" height="8" fill="#6B3A1B"/><rect x="8" y="37" width="84" height="7" rx="3" fill="#A0692E"/><rect x="14" y="44" width="5" height="28" rx="1" fill="#5C3317"/><rect x="81" y="44" width="5" height="28" rx="1" fill="#5C3317"/></svg>',
+  picnic:'<svg viewBox="0 0 100 80" width="1em" height="1em"><rect x="12" y="24" width="76" height="7" rx="2" fill="#8B5A2B"/><rect x="20" y="42" width="24" height="5" rx="2" fill="#A0692E"/><rect x="56" y="42" width="24" height="5" rx="2" fill="#A0692E"/><line x1="35" y1="31" x2="25" y2="72" stroke="#5C3317" stroke-width="5" stroke-linecap="round"/><line x1="65" y1="31" x2="75" y2="72" stroke="#5C3317" stroke-width="5" stroke-linecap="round"/><line x1="50" y1="31" x2="50" y2="72" stroke="#5C3317" stroke-width="4" stroke-linecap="round"/></svg>',
+  gazebo:'<svg viewBox="0 0 100 80" width="1em" height="1em"><polygon points="50,2 2,32 98,32" fill="#7C3E20"/><rect x="2" y="32" width="96" height="4" rx="1" fill="#5C2E15"/><rect x="12" y="36" width="6" height="40" fill="#8B5A2B"/><rect x="82" y="36" width="6" height="40" fill="#8B5A2B"/><rect x="47" y="36" width="6" height="40" fill="#8B5A2B"/><rect x="5" y="72" width="90" height="6" rx="2" fill="#C9B898"/></svg>',
+  pond:'<svg viewBox="0 0 120 80" width="1.5em" height="1em"><ellipse cx="60" cy="42" rx="56" ry="34" fill="#3A7BD5"/><ellipse cx="60" cy="40" rx="52" ry="30" fill="#4A90D9"/><ellipse cx="48" cy="34" rx="20" ry="8" fill="rgba(255,255,255,.25)"/><ellipse cx="70" cy="50" rx="12" ry="4" fill="rgba(255,255,255,.15)"/><path d="M30 55 Q35 52 40 55 Q45 58 50 55" stroke="rgba(255,255,255,.3)" stroke-width="2" fill="none"/></svg>',
+  rain:'<svg viewBox="0 0 100 80" width="1em" height="1em"><ellipse cx="50" cy="68" rx="46" ry="11" fill="#5A8C32"/><path d="M18 68Q16 42 22 18" stroke="#3D7A1C" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M30 68Q32 35 27 10" stroke="#4E9928" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M42 68Q40 30 46 6" stroke="#3D7A1C" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M54 68Q56 32 50 12" stroke="#6BA83E" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M66 68Q64 38 70 14" stroke="#3D7A1C" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M78 68Q80 42 74 22" stroke="#4E9928" stroke-width="3.5" fill="none" stroke-linecap="round"/><circle cx="25" cy="10" r="2" fill="#5BA0E9"/><circle cx="45" cy="4" r="2" fill="#5BA0E9"/><circle cx="62" cy="8" r="2" fill="#5BA0E9"/><circle cx="75" cy="14" r="2" fill="#5BA0E9"/></svg>',
+  lamp:'<svg viewBox="0 0 60 100" width=".6em" height="1em"><rect x="26" y="20" width="8" height="72" rx="2" fill="#555"/><ellipse cx="30" cy="92" rx="14" ry="4" fill="#444"/><rect x="18" y="8" width="24" height="16" rx="4" fill="#333"/><rect x="22" y="12" width="16" height="8" rx="2" fill="#FFD54F"/><circle cx="30" cy="6" r="4" fill="#444"/></svg>',
+};
+
 const PARK_CATS=[
   {name:'Plants',icon:'🌿',items:[
     {n:'Oak Tree',i:'🌳',s:54,t:['shade']},{n:'Pine',i:'🌲',s:50,t:['shade']},{n:'Palm',i:'🌴',s:48,t:['shade']},
@@ -987,13 +997,13 @@ const PARK_CATS=[
     {n:'Rose',i:'🌹',s:32,t:['garden']},{n:'Herbs',i:'🌿',s:28,t:['garden','green']},{n:'Cactus',i:'🌵',s:34,t:['garden']},
   ]},
   {name:'Structures',icon:'🏗️',items:[
-    {n:'Bench',i:'🪑',s:38,t:['seating']},{n:'Picnic Table',i:'🏕️',s:36,t:['seating']},{n:'Playground',i:'🛝',s:44,t:['active']},
-    {n:'Gazebo',i:'🏛️',s:46,t:['shelter']},{n:'Bridge',i:'🌉',s:42,t:['access']},{n:'Lamp Post',i:'🏮',s:32,t:['lighting']},
+    {n:'Bench',i:PI.bench,s:44,t:['seating']},{n:'Picnic Table',i:PI.picnic,s:44,t:['seating']},{n:'Playground',i:'🛝',s:44,t:['active']},
+    {n:'Gazebo',i:PI.gazebo,s:52,t:['shelter']},{n:'Bridge',i:'🌉',s:42,t:['access']},{n:'Lamp Post',i:PI.lamp,s:44,t:['lighting']},
     {n:'Trash Can',i:'🗑️',s:30,t:['amenity']},{n:'House',i:'🏠',s:44,t:['building']},
   ]},
   {name:'Water',icon:'💧',items:[
-    {n:'Fountain',i:'⛲',s:44,t:['water']},{n:'Pond',i:'🏞️',s:40,t:['water']},
-    {n:'Rain Garden',i:'☔',s:38,t:['water','green']},{n:'Sprinkler',i:'💦',s:32,t:['water']},
+    {n:'Fountain',i:'⛲',s:44,t:['water']},{n:'Pond',i:PI.pond,s:60,t:['water']},
+    {n:'Rain Garden',i:PI.rain,s:48,t:['water','green']},{n:'Sprinkler',i:'💦',s:32,t:['water']},
   ]},
   {name:'Wildlife',icon:'🦋',items:[
     {n:'Person',i:'🧑',s:34,t:['people']},{n:'Child',i:'🧒',s:30,t:['people']},{n:'Dog',i:'🐕',s:30,t:['wildlife']},
@@ -1572,20 +1582,45 @@ function pbSaveImage(){
   const w=stage.offsetWidth,h=stage.offsetHeight;
   const c=document.createElement('canvas');
   const dpr=2;c.width=w*dpr;c.height=h*dpr;
-  const ctx=c.getContext('2d');ctx.scale(dpr,dpr);
-  ctx.drawImage(document.getElementById('pbBg'),0,0,w,h);
-  if(pbGridOn){ctx.strokeStyle='rgba(0,0,0,.05)';ctx.lineWidth=1;
-    for(let x=0;x<=w;x+=50){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
-    for(let y2=0;y2<=h;y2+=50){ctx.beginPath();ctx.moveTo(0,y2);ctx.lineTo(w,y2);ctx.stroke();}
+  const ctx2=c.getContext('2d');ctx2.scale(dpr,dpr);
+  ctx2.drawImage(document.getElementById('pbBg'),0,0,w,h);
+  if(pbGridOn){ctx2.strokeStyle='rgba(0,0,0,.05)';ctx2.lineWidth=1;
+    for(let x=0;x<=w;x+=50){ctx2.beginPath();ctx2.moveTo(x,0);ctx2.lineTo(x,h);ctx2.stroke();}
+    for(let y2=0;y2<=h;y2+=50){ctx2.beginPath();ctx2.moveTo(0,y2);ctx2.lineTo(w,y2);ctx2.stroke();}
   }
-  [...pbItems].sort((a,b)=>a.z-b.z).forEach(item=>{
-    ctx.save();ctx.translate(item.x,item.y);ctx.rotate(item.r*Math.PI/180);
-    if(item.flip)ctx.scale(-1,1);
-    ctx.font=item.s+'px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.fillText(item.i,0,0);ctx.restore();
+  /* Draw items — emoji via fillText, SVG items via drawImage */
+  const sorted=[...pbItems].sort((a,b)=>a.z-b.z);
+  const isSvg=s=>s.startsWith('<svg');
+  const svgItems=sorted.filter(it=>isSvg(it.i));
+  const emojiItems=sorted.filter(it=>!isSvg(it.i));
+  /* Draw emoji items immediately */
+  emojiItems.forEach(item=>{
+    ctx2.save();ctx2.translate(item.x,item.y);ctx2.rotate(item.r*Math.PI/180);
+    if(item.flip)ctx2.scale(-1,1);
+    ctx2.font=item.s+'px sans-serif';ctx2.textAlign='center';ctx2.textBaseline='middle';
+    ctx2.fillText(item.i,0,0);ctx2.restore();
   });
-  const a=document.createElement('a');a.download='My Park Design.png';a.href=c.toDataURL('image/png');a.click();
-  showToast('Park design saved as image!');
+  /* Load & draw SVG items, then export */
+  if(svgItems.length===0){
+    const a=document.createElement('a');a.download='My Park Design.png';a.href=c.toDataURL('image/png');a.click();
+    showToast('Park design saved as image!');return;
+  }
+  let loaded=0;
+  svgItems.forEach(item=>{
+    const img=new Image();
+    const blob=new Blob([item.i],{type:'image/svg+xml'});
+    img.onload=()=>{
+      ctx2.save();ctx2.translate(item.x,item.y);ctx2.rotate(item.r*Math.PI/180);
+      if(item.flip)ctx2.scale(-1,1);
+      ctx2.drawImage(img,-item.s/2,-item.s/2,item.s,item.s);
+      ctx2.restore();URL.revokeObjectURL(img.src);
+      if(++loaded===svgItems.length){
+        const a=document.createElement('a');a.download='My Park Design.png';a.href=c.toDataURL('image/png');a.click();
+        showToast('Park design saved as image!');
+      }
+    };
+    img.src=URL.createObjectURL(blob);
+  });
 }
 
 /* Paint the landscape background */
