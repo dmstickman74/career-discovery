@@ -186,31 +186,57 @@ section:nth-child(even){background:var(--white);}
 .scene-btn:hover{border-color:var(--asla-teal);}
 .scene-btn.active{background:var(--asla-teal);color:var(--white);border-color:var(--asla-teal);}
 
-/* ─── Park Builder ───────────────────────────────────────── */
-.park-builder{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-card);}
-.park-toolbar{
-  display:flex;align-items:center;gap:var(--space-sm);padding:var(--space-md) var(--space-lg);
-  background:var(--soft-sage);border-bottom:1px solid var(--border-gray);flex-wrap:wrap;
-}
-.park-toolbar .element-btn{
-  display:flex;flex-direction:column;align-items:center;gap:4px;
-  padding:8px 12px;border-radius:var(--radius-sm);border:2px solid transparent;
-  background:var(--white);cursor:grab;font-size:11px;font-weight:600;
-  color:var(--asla-teal);transition:all var(--dur-fast) var(--ease-out);
-  min-width:70px;
-}
-.park-toolbar .element-btn:hover{border-color:var(--asla-green);transform:translateY(-2px);box-shadow:var(--shadow-subtle);}
-.park-toolbar .element-btn .icon{font-size:28px;line-height:1;}
-.park-canvas-wrap{position:relative;min-height:500px;background:linear-gradient(180deg,#87CEEB 0%,#87CEEB 35%,#7EC850 35%,#5DAA30 100%);overflow:hidden;}
-.park-canvas-wrap canvas{width:100%;height:100%;}
-.park-item{
-  position:absolute;cursor:move;user-select:none;
-  transition:filter var(--dur-fast) var(--ease-out);
-  font-size:40px;line-height:1;
-}
-.park-item:hover{filter:drop-shadow(0 4px 8px rgba(0,0,0,.2));}
-.park-item.selected{outline:3px dashed var(--asla-green);outline-offset:4px;}
-.park-controls{display:flex;gap:var(--space-md);padding:var(--space-md) var(--space-lg);background:var(--warm-cream);flex-wrap:wrap;align-items:center;}
+/* ─── Park Builder V2 ────────────────────────────────────── */
+.pb-challenges{display:flex;gap:var(--space-sm);margin-bottom:var(--space-lg);flex-wrap:wrap;}
+.pb-ch{flex:1;min-width:130px;padding:var(--space-sm) var(--space-md);border-radius:var(--radius-md);border:2px solid var(--border-gray);background:var(--white);cursor:pointer;text-align:center;transition:all var(--dur-fast) var(--ease-out);}
+.pb-ch:hover{border-color:var(--asla-green);transform:translateY(-2px);}
+.pb-ch.active{border-color:var(--asla-teal);background:rgba(0,58,73,.05);}
+.pb-ch .ch-icon{font-size:24px;}.pb-ch .ch-title{font-size:12px;font-weight:700;color:var(--asla-teal);margin-top:2px;}
+.pb-brief{background:linear-gradient(135deg,#E7EDDA,#F4F2ED);border-radius:var(--radius-md);padding:var(--space-md) var(--space-lg);margin-bottom:var(--space-lg);border-left:4px solid var(--asla-green);display:none;}
+.pb-brief.show{display:block;}
+.pb-brief h4{margin:0 0 4px;color:var(--asla-teal);font-size:14px;}.pb-brief p{margin:0;font-size:13px;color:var(--dark-gray);line-height:1.5;}
+.pb-wrap{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-card);}
+.pb-toolbar{background:var(--soft-sage);padding:var(--space-sm) var(--space-lg);border-bottom:1px solid var(--border-gray);}
+.pb-cats{display:flex;gap:6px;margin-bottom:var(--space-sm);flex-wrap:wrap;}
+.pb-cat{padding:5px 12px;border-radius:20px;border:2px solid transparent;background:var(--white);cursor:pointer;font-size:11px;font-weight:700;color:var(--asla-teal);transition:all var(--dur-fast) var(--ease-out);display:flex;align-items:center;gap:4px;}
+.pb-cat:hover{border-color:var(--asla-green);}.pb-cat.active{background:var(--asla-teal);color:var(--white);border-color:var(--asla-teal);}
+.pb-elems{display:flex;gap:8px;flex-wrap:wrap;min-height:52px;}
+.pb-elem{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 8px;border-radius:var(--radius-sm);border:2px solid transparent;background:var(--white);cursor:pointer;font-size:10px;font-weight:600;color:var(--asla-teal);transition:all var(--dur-fast) var(--ease-out);min-width:56px;}
+.pb-elem:hover{border-color:var(--asla-green);transform:translateY(-1px);}.pb-elem.active{border-color:var(--asla-green);background:#E7EDDA;}
+.pb-elem .ei{font-size:24px;line-height:1;}
+.pb-mid{display:flex;}
+.pb-main{flex:1;min-width:0;display:flex;flex-direction:column;}
+.pb-bar{display:flex;align-items:center;gap:var(--space-sm);padding:6px var(--space-lg);background:var(--warm-cream);border-bottom:1px solid var(--border-gray);flex-wrap:wrap;}
+.pb-bar.bottom{border-bottom:none;border-top:1px solid var(--border-gray);justify-content:space-between;}
+.pb-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:var(--radius-sm);border:1px solid var(--border-gray);background:var(--white);font-size:11px;font-weight:600;color:var(--dark-gray);cursor:pointer;transition:all var(--dur-fast) var(--ease-out);}
+.pb-btn:hover:not(:disabled){background:var(--soft-sage);color:var(--asla-teal);}.pb-btn:disabled{opacity:.35;cursor:default;}
+.pb-btn.on{background:var(--asla-teal);color:var(--white);border-color:var(--asla-teal);}
+.pb-btn.del{color:#C62828;}.pb-btn.del:hover:not(:disabled){background:#FFEBEE;}
+.pb-cnt{font-size:11px;color:var(--dark-gray);margin-left:auto;}
+.pb-stage{position:relative;height:500px;overflow:hidden;cursor:crosshair;}
+.pb-stage canvas{position:absolute;inset:0;width:100%;height:100%;}
+.pb-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(0,0,0,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.05) 1px,transparent 1px);background-size:50px 50px;opacity:0;transition:opacity .2s;}
+.pb-grid.show{opacity:1;}
+.pb-layer{position:absolute;inset:0;pointer-events:none;}
+.pb-p{position:absolute;cursor:move;user-select:none;pointer-events:auto;line-height:1;animation:pbPop .25s var(--ease-out);}
+@keyframes pbPop{from{transform:scale(0)}to{transform:scale(1)}}
+.pb-p:hover{filter:drop-shadow(0 2px 6px rgba(0,0,0,.25));}
+.pb-p.sel{outline:2px dashed var(--asla-green);outline-offset:4px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
+.pb-ctrl{display:flex;align-items:center;gap:var(--space-md);padding:6px var(--space-lg);background:#EEF5E0;border-top:1px solid var(--border-gray);flex-wrap:wrap;}
+.pb-ctrl label{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--asla-teal);}
+.pb-ctrl input[type=range]{width:100px;accent-color:var(--asla-green);}
+.pb-ctrl button{padding:3px 10px;border-radius:var(--radius-sm);border:1px solid var(--border-gray);background:var(--white);font-size:11px;cursor:pointer;}
+.pb-hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.9);padding:6px 14px;border-radius:var(--radius-sm);font-size:12px;color:var(--dark-gray);pointer-events:none;transition:opacity .3s;}
+.pb-hint.hid{opacity:0;}
+.pb-sc{width:220px;flex-shrink:0;background:linear-gradient(180deg,var(--warm-cream),#F9F7F2);border-left:1px solid var(--border-gray);padding:var(--space-md);display:none;overflow-y:auto;}
+.pb-sc.show{display:block;}
+.pb-sc h4{font-size:13px;color:var(--asla-teal);margin:0 0 var(--space-sm);text-transform:uppercase;letter-spacing:.06em;font-family:var(--font-condensed);}
+.pb-si{display:flex;gap:6px;margin-bottom:8px;font-size:12px;line-height:1.3;color:var(--dark-gray);}
+.pb-si.done{color:var(--asla-teal);font-weight:600;}
+.pb-si .si{flex-shrink:0;}
+.pb-ss{margin-top:var(--space-md);padding-top:var(--space-sm);border-top:1px solid var(--border-gray);text-align:center;}
+.pb-ss .stars{font-size:22px;}.pb-ss .msg{font-size:11px;color:var(--dark-gray);font-weight:600;margin-top:2px;}
+.pb-done{margin-top:var(--space-sm);padding:var(--space-sm);border-radius:var(--radius-sm);background:linear-gradient(135deg,#E8F5E9,#C8E6C9);text-align:center;font-size:12px;color:var(--asla-teal);font-weight:700;animation:pbPop .4s var(--ease-out);}
 
 /* ─── Memory Game ────────────────────────────────────────── */
 .memory-board{
@@ -588,21 +614,36 @@ section:nth-child(even){background:var(--white);}
   <div class="container">
     <p class="section-eyebrow">Build</p>
     <h2 class="section-title">Virtual Park Builder</h2>
-    <p class="section-subtitle">Design your own park. Drag elements onto the landscape, arrange them, and create a space where everyone belongs.</p>
-    <div class="park-builder">
-      <div class="park-toolbar" id="parkToolbar">
-        <!-- Filled by JS -->
-      </div>
-      <div class="park-canvas-wrap" id="parkCanvas" style="height:500px;position:relative;">
-        <!-- Park items get added here -->
-        <div style="position:absolute;bottom:10px;right:10px;background:rgba(255,255,255,.85);padding:8px 14px;border-radius:var(--radius-sm);font-size:12px;color:var(--dark-gray);">
-          Click elements above, then click on the landscape to place them
+    <p class="section-subtitle">Step into the role of a landscape architect. Choose a design challenge — or free-build — and create a park that solves real problems.</p>
+    <div class="pb-challenges" id="pbChallenges"></div>
+    <div class="pb-brief" id="pbBrief"><h4 id="pbBriefTitle"></h4><p id="pbBriefText"></p></div>
+    <div class="pb-wrap">
+      <div class="pb-toolbar"><div class="pb-cats" id="pbCats"></div><div class="pb-elems" id="pbElems"></div></div>
+      <div class="pb-mid">
+        <div class="pb-main">
+          <div class="pb-bar">
+            <button class="pb-btn" id="pbUndoBtn" onclick="pbUndo()" disabled>↩ Undo</button>
+            <button class="pb-btn" id="pbGridBtn" onclick="pbToggleGrid()">⊞ Grid</button>
+            <button class="pb-btn del" id="pbDelBtn" onclick="pbDeleteSel()" disabled>✕ Delete</button>
+            <span class="pb-cnt" id="pbCnt">0 elements</span>
+          </div>
+          <div class="pb-stage" id="pbStage">
+            <canvas id="pbBg"></canvas>
+            <div class="pb-grid" id="pbGrid"></div>
+            <div class="pb-layer" id="pbLayer"></div>
+            <div class="pb-hint" id="pbHint">Select an element above, then click here to place it</div>
+          </div>
+          <div class="pb-ctrl" id="pbCtrl" style="display:none">
+            <label>Size <input type="range" min="16" max="100" id="pbSize" oninput="pbResizeSel(+this.value)"></label>
+            <label>Rotate <input type="range" min="-180" max="180" value="0" id="pbRot" oninput="pbRotateSel(+this.value)"></label>
+            <button onclick="pbFlipSel()">↔ Flip</button>
+          </div>
+          <div class="pb-bar bottom">
+            <button class="btn btn-sm btn-outline" onclick="pbClear()">Start Over</button>
+            <button class="btn btn-sm btn-teal" onclick="pbSaveImage()">Save as Image</button>
+          </div>
         </div>
-      </div>
-      <div class="park-controls">
-        <button class="btn btn-sm btn-teal" onclick="clearPark()">Start Over</button>
-        <button class="btn btn-sm btn-primary" onclick="savePark()">Save My Park</button>
-        <span style="font-size:13px;color:var(--dark-gray);margin-left:auto;" id="parkItemCount">0 elements placed</span>
+        <div class="pb-sc" id="pbSc"></div>
       </div>
     </div>
   </div>
@@ -931,25 +972,39 @@ const COLORING_COLORS = [
 
 const BRUSH_SIZES = [4,8,14,24,40];
 
-const PARK_ELEMENTS = [
-  {name:'Tree',icon:'&#127795;',size:50},
-  {name:'Evergreen',icon:'&#127794;',size:48},
-  {name:'Palm',icon:'&#127796;',size:46},
-  {name:'Flower',icon:'&#127804;',size:36},
-  {name:'Tulip',icon:'&#127799;',size:34},
-  {name:'Sunflower',icon:'&#127803;',size:38},
-  {name:'Bench',icon:'&#129681;',size:40},
-  {name:'Fountain',icon:'&#9970;',size:44},
-  {name:'Playground',icon:'&#127904;',size:42},
-  {name:'Path',icon:'&#128740;',size:36},
-  {name:'Pond',icon:'&#128167;',size:42},
-  {name:'Bird',icon:'&#128038;',size:32},
-  {name:'Butterfly',icon:'&#129419;',size:30},
-  {name:'Dog',icon:'&#128054;',size:32},
-  {name:'Person',icon:'&#129489;',size:36},
-  {name:'House',icon:'&#127968;',size:44},
-  {name:'Bridge',icon:'&#127753;',size:40},
-  {name:'Sun',icon:'&#9728;&#65039;',size:44},
+const PARK_CATS=[
+  {name:'Plants',icon:'🌿',items:[
+    {n:'Oak Tree',i:'🌳',s:54,t:['shade']},{n:'Pine',i:'🌲',s:50,t:['shade']},{n:'Palm',i:'🌴',s:48,t:['shade']},
+    {n:'Cherry Blossom',i:'🌸',s:38,t:['garden']},{n:'Tulips',i:'🌷',s:32,t:['garden']},{n:'Sunflower',i:'🌻',s:36,t:['garden']},
+    {n:'Rose',i:'🌹',s:32,t:['garden']},{n:'Herbs',i:'🌿',s:28,t:['garden','green']},{n:'Cactus',i:'🌵',s:34,t:['garden']},
+  ]},
+  {name:'Structures',icon:'🏗️',items:[
+    {n:'Bench',i:'🪑',s:38,t:['seating']},{n:'Picnic Area',i:'🧺',s:36,t:['seating']},{n:'Playground',i:'🎠',s:44,t:['active']},
+    {n:'Gazebo',i:'⛺',s:46,t:['shelter']},{n:'Bridge',i:'🌉',s:42,t:['access']},{n:'Lamp',i:'💡',s:32,t:['lighting']},
+    {n:'Trash Can',i:'🗑️',s:30,t:['amenity']},{n:'House',i:'🏠',s:44,t:['building']},
+  ]},
+  {name:'Water',icon:'💧',items:[
+    {n:'Fountain',i:'⛲',s:44,t:['water']},{n:'Pond',i:'💧',s:40,t:['water']},
+    {n:'Rain Garden',i:'🌊',s:38,t:['water','green']},{n:'Sprinkler',i:'💦',s:32,t:['water']},
+  ]},
+  {name:'Wildlife',icon:'🦋',items:[
+    {n:'Person',i:'🧑',s:34,t:['people']},{n:'Child',i:'🧒',s:30,t:['people']},{n:'Dog',i:'🐕',s:30,t:['wildlife']},
+    {n:'Bird',i:'🐦',s:26,t:['wildlife']},{n:'Butterfly',i:'🦋',s:26,t:['wildlife']},{n:'Duck',i:'🦆',s:28,t:['wildlife']},
+    {n:'Squirrel',i:'🐿️',s:24,t:['wildlife']},
+  ]},
+  {name:'Access & Green',icon:'♿',items:[
+    {n:'Path Stone',i:'🪨',s:28,t:['path']},{n:'Bike Rack',i:'🚲',s:34,t:['access']},{n:'Wheelchair Ramp',i:'♿',s:34,t:['access','inclusive']},
+    {n:'Solar Panel',i:'☀️',s:36,t:['green']},{n:'Recycling',i:'♻️',s:32,t:['green']},{n:'Sign',i:'🪧',s:30,t:['access']},
+    {n:'Compost',i:'🪱',s:28,t:['green']},
+  ]},
+];
+const PARK_CHALS=[
+  {title:'Shady Oasis',icon:'☀️',brief:'This neighborhood is scorching hot with zero shade! Design a cooling park with trees, water features, and comfortable places to rest.',
+   criteria:[{l:'Plant 4+ shade trees',t:['shade'],m:4},{l:'Add 2+ seating areas',t:['seating'],m:2},{l:'Include a water feature',t:['water'],m:1},{l:'Plant flowers or gardens',t:['garden'],m:3},{l:'Add lighting',t:['lighting'],m:1}]},
+  {title:'Stormwater Park',icon:'🌧️',brief:'This area floods every time it rains! Design a park that captures and filters rainwater using rain gardens, native plants, and natural drainage.',
+   criteria:[{l:'Add 2+ water features',t:['water'],m:2},{l:'Plant 5+ trees and plants',t:['shade','garden'],m:5},{l:'Include green infrastructure',t:['green'],m:2},{l:'Add paths for access',t:['path','access'],m:2},{l:'Support wildlife',t:['wildlife'],m:2}]},
+  {title:"Everyone's Park",icon:'♿',brief:'Design a park where EVERYONE belongs — toddlers, teens, seniors, and wheelchair users. Accessibility, variety, and comfort for all!',
+   criteria:[{l:'Include accessible features',t:['access','inclusive'],m:2},{l:'Add active play areas',t:['active'],m:1},{l:'Provide 3+ rest spots',t:['seating'],m:3},{l:'Plant shade trees',t:['shade'],m:3},{l:'Add people enjoying it',t:['people'],m:2}]},
 ];
 
 const MEMORY_ICONS = [
@@ -1780,80 +1835,279 @@ BRUSH_SIZES.forEach((s,i)=>{
 });
 
 /* ────────────────────────────────────────────────────────────────
-   PARK BUILDER
+   PARK BUILDER V2
    ──────────────────────────────────────────────────────────── */
-let parkItems=[];
-let selectedParkElement=null;
+let pbItems=[],pbSelId=null,pbTool=null,pbChalIdx=-1,pbCatIdx=0,pbGridOn=false,pbHist=[],pbNId=1,pbNZ=1;
 
-function renderParkToolbar(){
-  const toolbar=document.getElementById('parkToolbar');
-  toolbar.innerHTML='<label style="font-size:13px;font-weight:700;color:var(--asla-teal);font-family:var(--font-condensed);letter-spacing:.08em;text-transform:uppercase;">Elements:</label>'+
-    PARK_ELEMENTS.map(el=>`
-      <button class="element-btn" data-element="${el.name}" data-icon="${el.icon}" data-size="${el.size}">
-        <span class="icon">${el.icon}</span>
-        <span>${el.name}</span>
-      </button>
-    `).join('');
+function initParkBuilder(){
+  const chEl=document.getElementById('pbChallenges');
+  chEl.innerHTML=PARK_CHALS.map((c,i)=>
+    `<div class="pb-ch" data-idx="${i}" onclick="pbSelChal(${i})"><div class="ch-icon">${c.icon}</div><div class="ch-title">${c.title}</div></div>`
+  ).join('')+`<div class="pb-ch active" data-idx="-1" onclick="pbSelChal(-1)"><div class="ch-icon">🎨</div><div class="ch-title">Free Build</div></div>`;
+  pbRenderCats();
+  pbRenderElems();
+  requestAnimationFrame(paintParkBg);
+  new ResizeObserver(()=>paintParkBg()).observe(document.getElementById('pbStage'));
 }
 
-document.getElementById('parkToolbar').addEventListener('click',e=>{
-  const btn=e.target.closest('.element-btn');
-  if(!btn)return;
-  document.querySelectorAll('.element-btn').forEach(b=>b.style.borderColor='transparent');
-  btn.style.borderColor='var(--asla-green)';
-  selectedParkElement={name:btn.dataset.element,icon:btn.dataset.icon,size:parseInt(btn.dataset.size)};
+function pbSelChal(idx){
+  pbChalIdx=idx;
+  document.querySelectorAll('.pb-ch').forEach(el=>{
+    const i=parseInt(el.dataset.idx);
+    el.classList.toggle('active',i===idx);
+  });
+  const brief=document.getElementById('pbBrief');
+  if(idx>=0){
+    const c=PARK_CHALS[idx];
+    document.getElementById('pbBriefTitle').textContent='📋 Design Brief: '+c.title;
+    document.getElementById('pbBriefText').textContent=c.brief;
+    brief.classList.add('show');
+  } else {
+    brief.classList.remove('show');
+  }
+  pbUpdateScore();
+  requestAnimationFrame(paintParkBg);
+}
+
+function pbRenderCats(){
+  document.getElementById('pbCats').innerHTML=PARK_CATS.map((c,i)=>
+    `<div class="pb-cat${i===pbCatIdx?' active':''}" onclick="pbSelCat(${i})"><span>${c.icon}</span> ${c.name}</div>`
+  ).join('');
+}
+function pbSelCat(idx){ pbCatIdx=idx; pbRenderCats(); pbRenderElems(); }
+
+function pbRenderElems(){
+  const cat=PARK_CATS[pbCatIdx];
+  document.getElementById('pbElems').innerHTML=cat.items.map((item,i)=>{
+    const active=pbTool&&pbTool.n===item.n&&pbTool.i===item.i;
+    return `<div class="pb-elem${active?' active':''}" onclick="pbSelTool(${pbCatIdx},${i})"><span class="ei">${item.i}</span>${item.n}</div>`;
+  }).join('');
+}
+function pbSelTool(ci,ii){
+  const item=PARK_CATS[ci].items[ii];
+  pbTool=(pbTool&&pbTool.n===item.n&&pbTool.i===item.i)?null:item;
+  pbDeselectAll();
+  pbRenderElems();
+  const hint=document.getElementById('pbHint');
+  if(pbTool){hint.textContent='Click on the landscape to place '+pbTool.n;hint.classList.remove('hid');}
+  else{hint.textContent='Select an element above, then click here to place it';hint.classList.remove('hid');}
+  document.getElementById('pbStage').style.cursor=pbTool?'crosshair':'default';
+}
+
+/* Place item on canvas click */
+document.getElementById('pbStage').addEventListener('click',function(e){
+  if(e.target.closest('.pb-p')){return;}
+  if(!pbTool){pbDeselectAll();return;}
+  const rect=this.getBoundingClientRect();
+  const x=e.clientX-rect.left, y=e.clientY-rect.top;
+  const id=pbNId++;
+  const item={id,n:pbTool.n,i:pbTool.i,tags:[...pbTool.t],x,y,s:pbTool.s,r:0,z:pbNZ++,flip:false};
+  pbItems.push(item);
+  pbHist.push({type:'place',id});
+  pbRenderPlaced(item);
+  pbUpdateCnt();
+  pbUpdateScore();
+  document.getElementById('pbHint').classList.add('hid');
+  document.getElementById('pbUndoBtn').disabled=false;
 });
 
-document.getElementById('parkCanvas').addEventListener('click',e=>{
-  if(!selectedParkElement)return;
-  const rect=e.currentTarget.getBoundingClientRect();
-  const x=e.clientX-rect.left;
-  const y=e.clientY-rect.top;
-  const item=document.createElement('div');
-  item.className='park-item';
-  item.style.left=(x-selectedParkElement.size/2)+'px';
-  item.style.top=(y-selectedParkElement.size/2)+'px';
-  item.style.fontSize=selectedParkElement.size+'px';
-  item.innerHTML=selectedParkElement.icon;
-  item.title=selectedParkElement.name;
-
-  let isDragging=false,startX,startY,origLeft,origTop;
-  item.addEventListener('pointerdown',ev=>{
-    ev.stopPropagation();
-    isDragging=true;
-    startX=ev.clientX;startY=ev.clientY;
-    origLeft=parseInt(item.style.left);origTop=parseInt(item.style.top);
-    item.style.zIndex='10';
+function pbRenderPlaced(item){
+  const el=document.createElement('div');
+  el.className='pb-p';
+  el.dataset.id=item.id;
+  el.style.cssText=`left:${item.x-item.s/2}px;top:${item.y-item.s/2}px;font-size:${item.s}px;z-index:${item.z};transform:rotate(${item.r}deg)${item.flip?' scaleX(-1)':''}`;
+  el.innerHTML=item.i;
+  el.title=item.n;
+  /* click → stop propagation so stage click handler doesn't fire */
+  el.addEventListener('click',ev=>ev.stopPropagation());
+  /* pointerdown → select + start drag */
+  el.addEventListener('pointerdown',function(ev){
+    ev.preventDefault();
+    pbSelectItem(item.id);
+    const startX=ev.clientX,startY=ev.clientY;
+    const origL=parseInt(el.style.left),origT=parseInt(el.style.top);
+    let moved=false;
+    function onMove(e){
+      el.style.left=(origL+e.clientX-startX)+'px';
+      el.style.top=(origT+e.clientY-startY)+'px';
+      moved=true;
+    }
+    function onUp(){
+      document.removeEventListener('pointermove',onMove);
+      document.removeEventListener('pointerup',onUp);
+      if(moved){item.x=parseInt(el.style.left)+item.s/2;item.y=parseInt(el.style.top)+item.s/2;}
+    }
+    document.addEventListener('pointermove',onMove);
+    document.addEventListener('pointerup',onUp);
   });
-  document.addEventListener('pointermove',ev=>{
-    if(!isDragging)return;
-    item.style.left=(origLeft+ev.clientX-startX)+'px';
-    item.style.top=(origTop+ev.clientY-startY)+'px';
-  });
-  document.addEventListener('pointerup',()=>{if(isDragging){isDragging=false;item.style.zIndex='';}});
-
-  item.addEventListener('dblclick',ev=>{
-    ev.stopPropagation();
-    item.remove();
-    parkItems=parkItems.filter(p=>p!==item);
-    updateParkCount();
-  });
-
-  document.getElementById('parkCanvas').appendChild(item);
-  parkItems.push(item);
-  updateParkCount();
-});
-
-function updateParkCount(){
-  document.getElementById('parkItemCount').textContent=parkItems.length+' element'+(parkItems.length!==1?'s':'')+' placed';
+  document.getElementById('pbLayer').appendChild(el);
 }
-function clearPark(){
-  parkItems.forEach(i=>i.remove());
-  parkItems=[];
-  updateParkCount();
+
+function pbSelectItem(id){
+  pbDeselectAll();
+  pbSelId=id;
+  const el=document.querySelector(`.pb-p[data-id="${id}"]`);
+  if(el)el.classList.add('sel');
+  const item=pbItems.find(i=>i.id===id);
+  if(!item)return;
+  item.z=pbNZ++;el.style.zIndex=item.z;
+  document.getElementById('pbSize').value=item.s;
+  document.getElementById('pbRot').value=item.r;
+  document.getElementById('pbCtrl').style.display='flex';
+  document.getElementById('pbDelBtn').disabled=false;
 }
-function savePark(){
-  showToast('Saving park design — take a screenshot to keep your creation');
+function pbDeselectAll(){
+  pbSelId=null;
+  document.querySelectorAll('.pb-p.sel').forEach(el=>el.classList.remove('sel'));
+  document.getElementById('pbCtrl').style.display='none';
+  document.getElementById('pbDelBtn').disabled=true;
+}
+
+function pbResizeSel(val){
+  const item=pbItems.find(i=>i.id===pbSelId);if(!item)return;
+  item.s=val;
+  const el=document.querySelector(`.pb-p[data-id="${pbSelId}"]`);
+  if(el){el.style.fontSize=val+'px';el.style.left=(item.x-val/2)+'px';el.style.top=(item.y-val/2)+'px';}
+}
+function pbRotateSel(val){
+  const item=pbItems.find(i=>i.id===pbSelId);if(!item)return;
+  item.r=val;
+  const el=document.querySelector(`.pb-p[data-id="${pbSelId}"]`);
+  if(el)el.style.transform=`rotate(${val}deg)${item.flip?' scaleX(-1)':''}`;
+}
+function pbFlipSel(){
+  const item=pbItems.find(i=>i.id===pbSelId);if(!item)return;
+  item.flip=!item.flip;
+  const el=document.querySelector(`.pb-p[data-id="${pbSelId}"]`);
+  if(el)el.style.transform=`rotate(${item.r}deg)${item.flip?' scaleX(-1)':''}`;
+}
+function pbDeleteSel(){
+  if(pbSelId==null)return;
+  const idx=pbItems.findIndex(i=>i.id===pbSelId);if(idx<0)return;
+  const item=pbItems[idx];
+  pbHist.push({type:'delete',item:{...item}});
+  pbItems.splice(idx,1);
+  document.querySelector(`.pb-p[data-id="${pbSelId}"]`)?.remove();
+  pbDeselectAll(); pbUpdateCnt(); pbUpdateScore();
+  document.getElementById('pbUndoBtn').disabled=pbHist.length===0;
+}
+function pbUndo(){
+  if(!pbHist.length)return;
+  const act=pbHist.pop();
+  if(act.type==='place'){
+    const idx=pbItems.findIndex(i=>i.id===act.id);
+    if(idx>=0){pbItems.splice(idx,1);document.querySelector(`.pb-p[data-id="${act.id}"]`)?.remove();}
+  } else if(act.type==='delete'){
+    pbItems.push(act.item); pbRenderPlaced(act.item);
+  }
+  pbDeselectAll(); pbUpdateCnt(); pbUpdateScore();
+  document.getElementById('pbUndoBtn').disabled=pbHist.length===0;
+}
+function pbToggleGrid(){
+  pbGridOn=!pbGridOn;
+  document.getElementById('pbGrid').classList.toggle('show',pbGridOn);
+  document.getElementById('pbGridBtn').classList.toggle('on',pbGridOn);
+}
+function pbUpdateCnt(){
+  const n=pbItems.length;
+  document.getElementById('pbCnt').textContent=n+' element'+(n!==1?'s':'');
+}
+
+/* Scorecard */
+function pbUpdateScore(){
+  const sc=document.getElementById('pbSc');
+  if(pbChalIdx<0){sc.classList.remove('show');return;}
+  sc.classList.add('show');
+  const chal=PARK_CHALS[pbChalIdx];
+  let done=0;
+  let html='<h4>Design Scorecard</h4>';
+  chal.criteria.forEach(cr=>{
+    const count=pbItems.filter(it=>it.tags.some(tg=>cr.t.includes(tg))).length;
+    const met=count>=cr.m;if(met)done++;
+    html+=`<div class="pb-si${met?' done':''}"><span class="si">${met?'✅':'⬜'}</span><span>${cr.l} (${count}/${cr.m})</span></div>`;
+  });
+  const total=chal.criteria.length;
+  const pct=done/total;
+  const stars=pct>=1?'⭐⭐⭐⭐⭐':pct>=.8?'⭐⭐⭐⭐':pct>=.6?'⭐⭐⭐':pct>=.4?'⭐⭐':'⭐';
+  html+=`<div class="pb-ss"><div class="stars">${stars}</div><div class="msg">${done}/${total} criteria met</div></div>`;
+  if(done===total)html+=`<div class="pb-done">🎉 Challenge Complete!<br>You think like a real landscape architect!</div>`;
+  sc.innerHTML=html;
+}
+
+function pbClear(){
+  pbItems=[];pbSelId=null;pbHist=[];pbNId=1;pbNZ=1;
+  document.getElementById('pbLayer').innerHTML='';
+  pbDeselectAll(); pbUpdateCnt(); pbUpdateScore();
+  document.getElementById('pbUndoBtn').disabled=true;
+  const hint=document.getElementById('pbHint');
+  hint.textContent='Select an element above, then click here to place it';hint.classList.remove('hid');
+}
+
+/* Save as real image */
+function pbSaveImage(){
+  const stage=document.getElementById('pbStage');
+  const w=stage.offsetWidth,h=stage.offsetHeight;
+  const c=document.createElement('canvas');
+  const dpr=2;c.width=w*dpr;c.height=h*dpr;
+  const ctx=c.getContext('2d');ctx.scale(dpr,dpr);
+  ctx.drawImage(document.getElementById('pbBg'),0,0,w,h);
+  if(pbGridOn){ctx.strokeStyle='rgba(0,0,0,.05)';ctx.lineWidth=1;
+    for(let x=0;x<=w;x+=50){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
+    for(let y2=0;y2<=h;y2+=50){ctx.beginPath();ctx.moveTo(0,y2);ctx.lineTo(w,y2);ctx.stroke();}
+  }
+  [...pbItems].sort((a,b)=>a.z-b.z).forEach(item=>{
+    ctx.save();ctx.translate(item.x,item.y);ctx.rotate(item.r*Math.PI/180);
+    if(item.flip)ctx.scale(-1,1);
+    ctx.font=item.s+'px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(item.i,0,0);ctx.restore();
+  });
+  const a=document.createElement('a');a.download='My Park Design.png';a.href=c.toDataURL('image/png');a.click();
+  showToast('Park design saved as image!');
+}
+
+/* Paint the landscape background */
+function paintParkBg(){
+  const c=document.getElementById('pbBg');
+  const stage=document.getElementById('pbStage');
+  if(!stage.offsetWidth)return;
+  const W=c.width=stage.offsetWidth*2,H=c.height=stage.offsetHeight*2;
+  const ctx=c.getContext('2d');ctx.scale(2,2);
+  const w=W/2,h=H/2;
+  /* sky */
+  const sky=ctx.createLinearGradient(0,0,0,h*.45);
+  sky.addColorStop(0,'#87CEEB');sky.addColorStop(1,'#D4ECFA');
+  ctx.fillStyle=sky;ctx.fillRect(0,0,w,h*.45);
+  /* clouds */
+  ctx.fillStyle='rgba(255,255,255,.7)';
+  [[w*.1,h*.1,60,18],[w*.35,h*.06,80,22],[w*.6,h*.12,50,14],[w*.82,h*.08,70,20]].forEach(([cx,cy,rx,ry])=>{
+    ctx.beginPath();ctx.ellipse(cx,cy,rx,ry,0,0,Math.PI*2);ctx.fill();
+  });
+  /* distant hills */
+  ctx.fillStyle='#6AAF50';
+  ctx.beginPath();ctx.moveTo(0,h*.45);
+  ctx.quadraticCurveTo(w*.15,h*.34,w*.3,h*.42);ctx.quadraticCurveTo(w*.5,h*.36,w*.7,h*.41);
+  ctx.quadraticCurveTo(w*.85,h*.34,w,h*.43);ctx.lineTo(w,h*.48);ctx.lineTo(0,h*.48);ctx.fill();
+  /* grass */
+  const grass=ctx.createLinearGradient(0,h*.43,0,h);
+  grass.addColorStop(0,'#7EC850');grass.addColorStop(1,'#5DAA30');
+  ctx.fillStyle=grass;ctx.fillRect(0,h*.43,w,h*.57);
+  /* winding path */
+  ctx.strokeStyle='#D4B896';ctx.lineWidth=26;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(-10,h*.78);
+  ctx.bezierCurveTo(w*.2,h*.65,w*.3,h*.82,w*.5,h*.7);
+  ctx.bezierCurveTo(w*.7,h*.58,w*.8,h*.85,w+10,h*.72);ctx.stroke();
+  ctx.strokeStyle='#C4A882';ctx.lineWidth=28;
+  ctx.globalCompositeOperation='destination-over';ctx.stroke();ctx.globalCompositeOperation='source-over';
+  /* pond */
+  const px=w*.78,py=h*.52;
+  const pond=ctx.createRadialGradient(px,py,8,px,py,50);
+  pond.addColorStop(0,'#5BA8C8');pond.addColorStop(1,'#3A8BAD');
+  ctx.fillStyle=pond;ctx.beginPath();ctx.ellipse(px,py,55,30,-.1,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='rgba(255,255,255,.2)';ctx.beginPath();ctx.ellipse(px-8,py-6,25,12,-.2,0,Math.PI*2);ctx.fill();
+  /* grass texture patches */
+  ctx.fillStyle='rgba(0,0,0,.03)';
+  for(let i=0;i<15;i++){const gx=Math.random()*w,gy=h*.5+Math.random()*h*.45;
+    ctx.beginPath();ctx.ellipse(gx,gy,20+Math.random()*30,10+Math.random()*15,Math.random()*Math.PI,0,Math.PI*2);ctx.fill();}
 }
 
 /* ────────────────────────────────────────────────────────────────
@@ -2651,7 +2905,7 @@ renderCurriculum();
 renderEduActivities();
 renderPD();
 renderPartners();
-renderParkToolbar();
+initParkBuilder();
 drawScene('park');
 initMemoryGame();
 renderQuiz();
