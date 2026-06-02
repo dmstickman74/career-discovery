@@ -114,8 +114,10 @@ section:nth-child(even){background:var(--white);}
 }
 .btn-primary{background:var(--asla-green);color:var(--asla-teal);border-color:var(--asla-green);}
 .btn-primary:hover{background:var(--asla-green-light);transform:translateY(-2px);box-shadow:0 6px 20px rgba(129,188,0,.3);}
-.btn-outline{background:transparent;color:var(--white);border-color:rgba(255,255,255,.4);}
-.btn-outline:hover{border-color:var(--white);background:rgba(255,255,255,.1);transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--asla-teal);border-color:var(--asla-teal);}
+.btn-outline:hover{border-color:var(--asla-teal);background:rgba(0,58,73,.08);transform:translateY(-2px);}
+.hero .btn-outline,.studio-toolbar .btn-outline{background:rgba(0,58,73,.65);color:var(--white);border-color:rgba(255,255,255,.5);backdrop-filter:blur(6px);}
+.hero .btn-outline:hover,.studio-toolbar .btn-outline:hover{background:rgba(0,58,73,.85);border-color:var(--white);transform:translateY(-2px);}
 .btn-sm{padding:10px 20px;font-size:14px;}
 .btn-teal{background:var(--asla-teal);color:var(--white);border-color:var(--asla-teal);}
 .btn-teal:hover{background:var(--asla-teal-light);transform:translateY(-2px);}
@@ -175,8 +177,8 @@ section:nth-child(even){background:var(--white);}
   transition:all var(--dur-fast) var(--ease-out);
 }
 .brush-btn:hover,.brush-btn.active{border-color:var(--white);background:rgba(255,255,255,.3);}
-.studio-canvas-wrap{position:relative;background:#e8e8e8;display:flex;align-items:flex-start;justify-content:center;padding:var(--space-md);max-height:800px;overflow-y:auto;}
-.studio-canvas-wrap canvas{cursor:crosshair;max-width:100%;height:auto;box-shadow:0 2px 12px rgba(0,0,0,.15);border-radius:4px;}
+.studio-canvas-wrap{position:relative;background:#e8e8e8;display:flex;align-items:center;justify-content:center;padding:var(--space-sm);}
+.studio-canvas-wrap canvas{cursor:crosshair;max-width:100%;height:auto;max-height:calc(100vh - 560px);min-height:200px;box-shadow:0 2px 12px rgba(0,0,0,.15);border-radius:4px;}
 .scene-selector{display:flex;gap:var(--space-sm);padding:var(--space-md) var(--space-lg);background:var(--warm-cream);flex-wrap:wrap;}
 .scene-btn{
   padding:8px 16px;border-radius:var(--radius-pill);border:2px solid var(--border-gray);
@@ -624,7 +626,7 @@ section:nth-child(even){background:var(--white);}
     <div class="pb-brief" id="pbBrief"><h4 id="pbBriefTitle"></h4><p id="pbBriefText"></p></div>
     <div class="pb-wrap">
       <div class="pb-toolbar"><div class="pb-cats" id="pbCats"></div><div class="pb-elems" id="pbElems"></div>
-        <div class="pb-size-ctrl"><label>Placement Size</label><input type="range" min="16" max="100" value="50" id="pbPlaceSize" oninput="pbPlaceSizeVal=+this.value;document.getElementById('pbPlaceSizeLabel').textContent=this.value"><span id="pbPlaceSizeLabel">50</span></div></div>
+        <div class="pb-size-ctrl"><label>Size</label><input type="range" min="16" max="100" value="50" id="pbPlaceSize" oninput="pbSetSize(+this.value)"><span id="pbPlaceSizeLabel">50</span></div></div>
       <div class="pb-mid">
         <div class="pb-main">
           <div class="pb-bar">
@@ -640,7 +642,7 @@ section:nth-child(even){background:var(--white);}
             <div class="pb-hint" id="pbHint">Select an element above, then click here to place it</div>
           </div>
           <div class="pb-ctrl" id="pbCtrl" style="display:none">
-            <label>Size <input type="range" min="16" max="100" id="pbSize" oninput="pbResizeSel(+this.value)"></label>
+            <label>Size <input type="range" min="16" max="100" id="pbSize" oninput="pbSetSize(+this.value)"></label>
             <label>Rotate <input type="range" min="-180" max="180" value="0" id="pbRot" oninput="pbRotateSel(+this.value)"></label>
             <button onclick="pbFlipSel()">↔ Flip</button>
           </div>
@@ -1465,6 +1467,9 @@ function pbSelectItem(id){
   item.z=pbNZ++;el.style.zIndex=item.z;
   document.getElementById('pbSize').value=item.s;
   document.getElementById('pbRot').value=item.r;
+  document.getElementById('pbPlaceSize').value=item.s;
+  document.getElementById('pbPlaceSizeLabel').textContent=item.s;
+  pbPlaceSizeVal=item.s;
   document.getElementById('pbCtrl').style.display='flex';
   document.getElementById('pbDelBtn').disabled=false;
 }
@@ -1480,6 +1485,12 @@ function pbResizeSel(val){
   item.s=val;
   const el=document.querySelector(`.pb-p[data-id="${pbSelId}"]`);
   if(el){el.style.fontSize=val+'px';el.style.left=(item.x-val/2)+'px';el.style.top=(item.y-val/2)+'px';}
+}
+/* Unified size handler — sets placement size AND resizes selected item */
+function pbSetSize(val){
+  pbPlaceSizeVal=val;
+  document.getElementById('pbPlaceSizeLabel').textContent=val;
+  if(pbSelId!=null){pbResizeSel(val);document.getElementById('pbSize').value=val;}
 }
 function pbRotateSel(val){
   const item=pbItems.find(i=>i.id===pbSelId);if(!item)return;
