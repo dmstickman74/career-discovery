@@ -1192,8 +1192,10 @@ const AGE_SECTION_MAP={
 function applyAgeFilter(age){
   renderActivities(age);
   renderVideos(age);
-  const allSections=['create','build','play','quiz','activitybook','activitybook-teens','learn','printables','educators'];
-  const visible=age==='all'?allSections.filter(s=>s!=='educators'):AGE_SECTION_MAP[age]||allSections;
+  const allSections=['explore','create','build','play','quiz','activitybook','activitybook-teens','learn','printables','educators'];
+  const visible=age==='all'?allSections.filter(s=>s!=='educators'):(AGE_SECTION_MAP[age]||allSections);
+  /* For non-edu ages, always show explore */
+  if(age!=='edu'&&!visible.includes('explore'))visible.unshift('explore');
   allSections.forEach(id=>{
     const el=document.getElementById(id);
     if(!el)return;
@@ -1202,6 +1204,8 @@ function applyAgeFilter(age){
   });
   if(age==='edu'){
     document.getElementById('educators')?.scrollIntoView({behavior:'smooth',block:'start'});
+  } else {
+    document.getElementById('explore')?.scrollIntoView({behavior:'smooth',block:'start'});
   }
 }
 
@@ -1215,6 +1219,16 @@ document.getElementById('ageToggle').addEventListener('click',e=>{
 /* ────────────────────────────────────────────────────────────────
    EDUCATOR TABS
    ──────────────────────────────────────────────────────────── */
+/* Intercept any link to #educators (right-nav, hero button, footer) — activate educator filter */
+document.addEventListener('click',e=>{
+  const link=e.target.closest('a[href="#educators"]');
+  if(!link)return;
+  e.preventDefault();
+  document.querySelectorAll('#ageToggle button').forEach(b=>b.classList.remove('active'));
+  document.querySelector('#ageToggle button[data-age="edu"]').classList.add('active');
+  applyAgeFilter('edu');
+});
+
 document.getElementById('eduTabBar').addEventListener('click',e=>{
   if(!e.target.classList.contains('tab-btn'))return;
   document.querySelectorAll('#eduTabBar .tab-btn').forEach(b=>b.classList.remove('active'));
