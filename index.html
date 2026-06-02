@@ -177,8 +177,8 @@ section:nth-child(even){background:var(--white);}
   transition:all var(--dur-fast) var(--ease-out);
 }
 .brush-btn:hover,.brush-btn.active{border-color:var(--white);background:rgba(255,255,255,.3);}
-.studio-canvas-wrap{position:relative;background:#e8e8e8;display:flex;align-items:center;justify-content:center;padding:var(--space-sm);}
-.studio-canvas-wrap canvas{cursor:crosshair;max-width:100%;height:auto;max-height:calc(100vh - 560px);min-height:200px;box-shadow:0 2px 12px rgba(0,0,0,.15);border-radius:4px;}
+.studio-canvas-wrap{position:relative;background:#e8e8e8;display:flex;align-items:flex-start;justify-content:center;padding:var(--space-md);max-height:800px;overflow-y:auto;}
+.studio-canvas-wrap canvas{cursor:crosshair;max-width:100%;height:auto;box-shadow:0 2px 12px rgba(0,0,0,.15);border-radius:4px;}
 .scene-selector{display:flex;gap:var(--space-sm);padding:var(--space-md) var(--space-lg);background:var(--warm-cream);flex-wrap:wrap;}
 .scene-btn{
   padding:8px 16px;border-radius:var(--radius-pill);border:2px solid var(--border-gray);
@@ -987,13 +987,13 @@ const PARK_CATS=[
     {n:'Rose',i:'🌹',s:32,t:['garden']},{n:'Herbs',i:'🌿',s:28,t:['garden','green']},{n:'Cactus',i:'🌵',s:34,t:['garden']},
   ]},
   {name:'Structures',icon:'🏗️',items:[
-    {n:'Bench',i:'🪑',s:38,t:['seating']},{n:'Picnic Area',i:'🧺',s:36,t:['seating']},{n:'Playground',i:'🎠',s:44,t:['active']},
-    {n:'Gazebo',i:'⛺',s:46,t:['shelter']},{n:'Bridge',i:'🌉',s:42,t:['access']},{n:'Lamp',i:'💡',s:32,t:['lighting']},
+    {n:'Bench',i:'🪑',s:38,t:['seating']},{n:'Picnic Table',i:'🏕️',s:36,t:['seating']},{n:'Playground',i:'🛝',s:44,t:['active']},
+    {n:'Gazebo',i:'🏛️',s:46,t:['shelter']},{n:'Bridge',i:'🌉',s:42,t:['access']},{n:'Lamp Post',i:'🏮',s:32,t:['lighting']},
     {n:'Trash Can',i:'🗑️',s:30,t:['amenity']},{n:'House',i:'🏠',s:44,t:['building']},
   ]},
   {name:'Water',icon:'💧',items:[
-    {n:'Fountain',i:'⛲',s:44,t:['water']},{n:'Pond',i:'💧',s:40,t:['water']},
-    {n:'Rain Garden',i:'🌊',s:38,t:['water','green']},{n:'Sprinkler',i:'💦',s:32,t:['water']},
+    {n:'Fountain',i:'⛲',s:44,t:['water']},{n:'Pond',i:'🏞️',s:40,t:['water']},
+    {n:'Rain Garden',i:'☔',s:38,t:['water','green']},{n:'Sprinkler',i:'💦',s:32,t:['water']},
   ]},
   {name:'Wildlife',icon:'🦋',items:[
     {n:'Person',i:'🧑',s:34,t:['people']},{n:'Child',i:'🧒',s:30,t:['people']},{n:'Dog',i:'🐕',s:30,t:['wildlife']},
