@@ -372,6 +372,42 @@ section:nth-child(even){background:var(--white);}
 .edu-card p{font-size:14px;color:var(--dark-gray);flex:1;}
 .edu-card .edu-meta{font-size:12px;color:var(--placeholder-gray);font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.08em;}
 
+/* ─── Books ──────────────────────────────────────────────── */
+.book-card{
+  background:var(--white);border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow-subtle);border:1px solid var(--border-gray);
+  transition:all var(--dur-normal) var(--ease-out);display:flex;flex-direction:column;
+}
+.book-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-3px);}
+.book-cover{
+  height:180px;display:flex;align-items:center;justify-content:center;
+  font-size:72px;position:relative;overflow:hidden;
+}
+.book-card .card-body{padding:var(--space-lg);flex:1;display:flex;flex-direction:column;}
+.book-card h3{font-size:15px;font-weight:700;color:var(--asla-teal);margin-bottom:2px;line-height:1.3;}
+.book-card .book-author{font-size:12px;color:var(--asla-green-dark);font-weight:600;margin-bottom:var(--space-sm);}
+.book-card p{font-size:13px;color:var(--dark-gray);margin-bottom:var(--space-md);flex:1;}
+.book-card .book-ages{font-size:11px;color:var(--placeholder-gray);font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.08em;margin-bottom:var(--space-sm);}
+.book-tab-bar{display:flex;gap:var(--space-sm);margin-bottom:var(--space-xl);flex-wrap:wrap;}
+.book-tab-bar button{
+  padding:var(--space-sm) var(--space-lg);border-radius:var(--radius-pill);
+  border:2px solid var(--border-gray);background:var(--white);
+  font-size:14px;font-weight:600;color:var(--dark-gray);
+  transition:all var(--dur-fast) var(--ease-out);
+}
+.book-tab-bar button:hover{border-color:var(--asla-green);color:var(--asla-teal);}
+.book-tab-bar button.active{background:var(--asla-teal);color:var(--white);border-color:var(--asla-teal);}
+.books-program-banner{
+  background:linear-gradient(135deg,var(--soft-sage),#d4e8c0);
+  border-radius:var(--radius-lg);padding:var(--space-xl);
+  margin-bottom:var(--space-xl);display:flex;align-items:center;gap:var(--space-xl);
+  border:1px solid rgba(129,188,0,.25);
+}
+.books-program-banner .banner-icon{font-size:56px;flex-shrink:0;}
+.books-program-banner h3{font-size:20px;font-weight:700;color:var(--asla-teal);margin-bottom:var(--space-xs);}
+.books-program-banner p{font-size:14px;color:var(--dark-gray);line-height:1.5;margin-bottom:var(--space-sm);}
+@media(max-width:600px){.books-program-banner{flex-direction:column;text-align:center;}}
+
 /* ─── Printables ─────────────────────────────────────────── */
 .printable-card{
   background:var(--white);border-radius:var(--radius-lg);overflow:hidden;
@@ -570,6 +606,7 @@ section:nth-child(even){background:var(--white);}
       <a href="#create">Create</a>
       <a href="#play">Play</a>
       <a href="#learn">Learn</a>
+      <a href="#books">Books</a>
       <a href="#educators">Educators</a>
     </nav>
   </div>
@@ -784,6 +821,37 @@ section:nth-child(even){background:var(--white);}
 </section>
 
 <!-- ═══════════════════════════════════════════════════════════════
+     BOOKS — STEM Literacy by Design
+     ═══════════════════════════════════════════════════════════ -->
+<section id="books">
+  <div class="container">
+    <p class="section-eyebrow">Read and Discover</p>
+    <h2 class="section-title">Children's Books About Landscape Architecture</h2>
+    <p class="section-subtitle">Explore stories that bring landscape architecture to life — from aquifers to pollinators — written by ASLA members, educators, and landscape architecture students.</p>
+
+    <div class="books-program-banner">
+      <div class="banner-icon">&#128218;</div>
+      <div>
+        <h3>STEM Literacy by Design</h3>
+        <p>ASLA's outdoor literacy initiative integrates science, technology, engineering, and math through reading adventures in natural environments. More than 30 ASLA chapters have hosted STEM Literacy by Design events across the country — bringing books, nature, and design thinking to K-12 students and educators.</p>
+        <a href="https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design" target="_blank" rel="noopener" class="btn btn-sm btn-teal">Learn More at ASLA.org</a>
+      </div>
+    </div>
+
+    <div class="book-tab-bar" id="bookTabBar">
+      <button class="active" data-booktab="all">All Books</button>
+      <button data-booktab="asla">By ASLA Members</button>
+      <button data-booktab="student">Student Authors</button>
+      <button data-booktab="resource">Educator Resources</button>
+    </div>
+
+    <div class="grid-4" id="booksGrid">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
      EDUCATORS PORTAL
      ═══════════════════════════════════════════════════════════ -->
 <section id="educators" style="background:var(--soft-sage);">
@@ -864,6 +932,7 @@ section:nth-child(even){background:var(--white);}
         <a href="#play">Memory Game</a>
         <a href="#quiz">Career Quiz</a>
         <a href="#printables">Printables</a>
+        <a href="#books">Books</a>
       </div>
       <div class="footer-col">
         <h4>For Educators</h4>
@@ -948,6 +1017,31 @@ const PRINTABLES = [
   {title:'Cityscape Garden',desc:'Urban planters, street trees, and pocket parks in a downtown setting.',icon:'&#127751;',bg:'linear-gradient(135deg,#ECEFF1,#CFD8DC)',image:'coloring-pages/cityscape-garden.png'},
   {title:'Activity Book — Kids',desc:'The full ASLA Activity Book for ages 9-12. Journey across an imaginary town.',icon:'&#128221;',bg:'linear-gradient(135deg,#FFF3E0,#FFE0B2)',link:'https://www.asla.org/become-a-la/career-discovery/activity-sketchbooks'},
   {title:'Activity Book — Teens',desc:'The ASLA Activity Book for ages 13+. Explore real U.S. landscape architecture projects.',icon:'&#128218;',bg:'linear-gradient(135deg,#F3E5F5,#E1BEE7)',link:'https://www.asla.org/become-a-la/career-discovery/activity-sketchbooks'},
+];
+
+const BOOKS = [
+  {title:'A is for Aquifer',author:'Ann English, ASLA',desc:'An alphabetical journey through water systems, watersheds, and the hidden world beneath our feet.',icon:'&#128167;',bg:'linear-gradient(135deg,#E3F2FD,#BBDEFB)',ages:'Ages 4-8',cat:'asla',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Come Plant a Seed',author:'Courtney McQueen, ASLA',desc:'A story about planting seeds and watching them grow — introducing young readers to the magic of gardens and green spaces.',icon:'&#127793;',bg:'linear-gradient(135deg,#E8F5E9,#C8E6C9)',ages:'Ages 3-7',cat:'asla',tag:'NEW',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:"Emma's Dream Job: Landscape Architecture",author:'Xiao Cui, ASLA',desc:'Follow Emma as she discovers what landscape architects do — designing parks, playgrounds, and beautiful outdoor spaces.',icon:'&#127752;',bg:'linear-gradient(135deg,#FFF8E1,#FFECB3)',ages:'Ages 5-9',cat:'asla',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Green Green: A Community Garden Story',author:'Baldev Lamba, ASLA',desc:'A vibrant tale of neighbors coming together to transform an empty lot into a thriving community garden.',icon:'&#129716;',bg:'linear-gradient(135deg,#E8F5E9,#A5D6A7)',ages:'Ages 4-8',cat:'asla',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Green Trees and Sam',author:'Shannon Gapp, ASLA',desc:'Sam explores the neighborhood and learns why trees matter — shade, clean air, habitat, and beauty all around.',icon:'&#127795;',bg:'linear-gradient(135deg,#F1F8E9,#DCEDC8)',ages:'Ages 4-8',cat:'asla',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'It Starts with a Bee',author:'Words & Pictures / Jennie Webber',desc:'Watch a tiny bee bring the world to bloom — a beautifully illustrated look at pollination and interconnected ecosystems.',icon:'&#128029;',bg:'linear-gradient(135deg,#FFF8E1,#FFE082)',ages:'Ages 3-7',cat:'asla',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Monsters Love Native Blooms',author:'Yiwei Huang, Chloe Kennedy, Kayla Kramer, Molly Wimberg & Wanting Zhang, ASLA',desc:'Friendly monsters discover the beauty and importance of native plants and pollinators in this playful adventure.',icon:'&#128126;',bg:'linear-gradient(135deg,#F3E5F5,#E1BEE7)',ages:'Ages 3-8',cat:'asla',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'The Tao Coloring Book of Flowers A to Z',author:'Lillian Wu, ASLA',desc:'An A-to-Z coloring book of flowers with stories and names in both English and Chinese — blending art, nature, and language.',icon:'&#127804;',bg:'linear-gradient(135deg,#FCE4EC,#F8BBD0)',ages:'All Ages',cat:'asla',tag:'NEW',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'The Pollinator Victory Garden',author:'Kim Eierman',desc:'Learn how to create a garden that supports bees, butterflies, and birds — a real-world guide to ecological planting.',icon:'&#129419;',bg:'linear-gradient(135deg,#FFF3E0,#FFE0B2)',ages:'Ages 8-12',cat:'asla',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Who Am I? In the Garden',author:'Little Hippo Books / Mel Matthews',desc:'A Pre-K touch-and-feel sensory board book — little ones discover garden creatures through textures and surprises.',icon:'&#128027;',bg:'linear-gradient(135deg,#E0F7FA,#B2EBF2)',ages:'Pre-K',cat:'asla',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Wonderland of Weeds',author:'Yuqi Zhang, ASLA & Xinran Ma, ASLA',desc:'Discover the secret lives of weeds — the overlooked plants that are tougher, more useful, and more wonderful than you think.',icon:'&#127807;',bg:'linear-gradient(135deg,#F1F8E9,#C5E1A5)',ages:'Ages 5-9',cat:'asla',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Mis sentidos y la arquitectura',author:'Jomarly Cruz Galarz, AIA',desc:'A bilingual sensory exploration of architecture — discover buildings and landscapes through sight, sound, touch, smell, and taste. (Spanish)',icon:'&#127963;',bg:'linear-gradient(135deg,#FFECB3,#FFE082)',ages:'Ages 4-8',cat:'asla',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Ants in the Oak',author:'Chloe Roberts — Ball State University',desc:'A tiny ant colony discovers the towering world of an oak tree in this student-illustrated story about scale and ecosystems.',icon:'&#128028;',bg:'linear-gradient(135deg,#EFEBE9,#D7CCC8)',ages:'Ages 4-8',cat:'student',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Chester the Cat',author:'Austen Hord — Ball State University',desc:'Follow Chester as he explores his neighborhood — discovering how landscape design shapes the places where people and animals live.',icon:'&#128008;',bg:'linear-gradient(135deg,#FFF3E0,#FFCCBC)',ages:'Ages 4-7',cat:'student',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Dinosaur Dilemma',author:'Clay Kessen — Ball State University',desc:'What if dinosaurs had to design their own park? A prehistoric twist on landscape architecture problem-solving.',icon:'&#129430;',bg:'linear-gradient(135deg,#E8F5E9,#C8E6C9)',ages:'Ages 5-8',cat:'student',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Fire to Forest',author:'Erin Haycox — Ball State University',desc:'After a wildfire, watch the landscape transform — a story of ecological resilience, succession, and nature\'s power to heal.',icon:'&#127793;',bg:'linear-gradient(135deg,#FBE9E7,#FFCCBC)',ages:'Ages 6-10',cat:'student',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'George and Sal',author:'Nadia Blecic — Ball State University',desc:'Two friends explore a landscape together, learning about friendship, place-making, and what makes a space feel like home.',icon:'&#127965;',bg:'linear-gradient(135deg,#E3F2FD,#BBDEFB)',ages:'Ages 4-7',cat:'student',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Race to Save the Park',author:'Mikayla Wetmore — Ball State University',desc:'A race against time to protect a beloved park — solving real design problems along the way.',icon:'&#127939;',bg:'linear-gradient(135deg,#E8F5E9,#A5D6A7)',ages:'Ages 6-10',cat:'student',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Secret Lives of Urban Trees',author:'Hunter Stoller — Ball State University',desc:'Discover what city trees really do — from cooling sidewalks to filtering air — told from the trees\' own perspective.',icon:'&#127794;',bg:'linear-gradient(135deg,#F1F8E9,#DCEDC8)',ages:'Ages 6-10',cat:'student',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Secrets of Sandhill Swamp',author:'Owl Mayhall — Ball State University',desc:'Venture into a swamp ecosystem and uncover the hidden design lessons nature has been teaching for millions of years.',icon:'&#129438;',bg:'linear-gradient(135deg,#E0F7FA,#B2EBF2)',ages:'Ages 6-10',cat:'student',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'Two Leaves of the Same Stem',author:'Ahmaud Carroll-Tubbs — Ball State University',desc:'Two leaves on the same plant see the world differently — a gentle story about perspective, diversity, and shared roots.',icon:'&#127811;',bg:'linear-gradient(135deg,#F1F8E9,#C5E1A5)',ages:'Ages 5-9',cat:'student',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
+  {title:'K-12 Landscape Architecture Education: Interdisciplinary Curriculum Guide',author:'Arnaldo Cardona, M.Ed., ASLA',desc:'A comprehensive curriculum guide for Art, STEM, and Vocational/Trade educators — bringing landscape architecture into classrooms across disciplines.',icon:'&#128209;',bg:'linear-gradient(135deg,#ECEFF1,#CFD8DC)',ages:'Educators / K-12',cat:'resource',link:'https://www.asla.org/become-a-la/career-discovery/stem-literacy-by-design'},
 ];
 
 const CURRICULUM = [
@@ -1123,6 +1217,29 @@ function renderPrintables(){
   `).join('');
 }
 
+function renderBooks(filter='all'){
+  const grid=document.getElementById('booksGrid');
+  const filtered=filter==='all'?BOOKS:BOOKS.filter(b=>b.cat===filter);
+  grid.innerHTML=filtered.map((b,i)=>`
+    <a href="${b.link}" target="_blank" rel="noopener" class="book-card fade-in delay-${i%4+1}" style="text-decoration:none;color:inherit;">
+      <div class="book-cover" style="background:${b.bg}">${b.icon}${b.tag?`<span style="position:absolute;top:8px;right:8px;background:var(--asla-green);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:var(--radius-pill);">${b.tag}</span>`:''}</div>
+      <div class="card-body">
+        <h3>${b.title}</h3>
+        <div class="book-author">${b.author}</div>
+        <p>${b.desc}</p>
+        <div class="book-ages">${b.ages}</div>
+      </div>
+    </a>
+  `).join('');
+}
+
+document.getElementById('bookTabBar').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  document.querySelectorAll('#bookTabBar button').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  renderBooks(e.target.dataset.booktab);
+});
+
 function renderCurriculum(){
   const grid=document.getElementById('curriculumGrid');
   grid.innerHTML=CURRICULUM.map((c,i)=>`
@@ -1179,18 +1296,18 @@ function renderPartners(){
    AGE TOGGLE
    ──────────────────────────────────────────────────────────── */
 const AGE_SECTION_MAP={
-  'all':['create','build','play','quiz','activitybook','activitybook-teens','learn','printables'],
-  'k2':['create','build','play','learn','printables'],
-  '35':['create','build','play','activitybook','learn','printables'],
-  '68':['create','build','play','quiz','activitybook','activitybook-teens','learn','printables'],
-  '912':['create','build','play','quiz','activitybook-teens','learn'],
-  'edu':['educators'],
+  'all':['create','build','play','quiz','activitybook','activitybook-teens','learn','books','printables'],
+  'k2':['create','build','play','learn','books','printables'],
+  '35':['create','build','play','activitybook','learn','books','printables'],
+  '68':['create','build','play','quiz','activitybook','activitybook-teens','learn','books','printables'],
+  '912':['create','build','play','quiz','activitybook-teens','learn','books'],
+  'edu':['educators','books'],
 };
 
 function applyAgeFilter(age){
   renderActivities(age);
   renderVideos(age);
-  const allSections=['explore','create','build','play','quiz','activitybook','activitybook-teens','learn','printables','educators'];
+  const allSections=['explore','create','build','play','quiz','activitybook','activitybook-teens','learn','books','printables','educators'];
   const visible=age==='all'?allSections.filter(s=>s!=='educators'):(AGE_SECTION_MAP[age]||allSections);
   /* For non-edu ages, always show explore */
   if(age!=='edu'&&!visible.includes('explore'))visible.unshift('explore');
@@ -2507,6 +2624,7 @@ function renderJourneySummary(){
 renderActivities();
 renderVideos();
 renderPrintables();
+renderBooks();
 renderCurriculum();
 renderEduActivities();
 renderPD();
